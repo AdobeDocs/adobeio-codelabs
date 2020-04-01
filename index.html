@@ -430,8 +430,7 @@
 
   <script>
     (() => {
-      let isLarge = window.innerWidth < 768;
-      document.body.classList.toggle('coral--large', isLarge);
+      document.body.classList.toggle('coral--large', window.innerWidth < 768);
       window.addEventListener('resize', () => {
         document.body.classList.toggle('coral--large', window.innerWidth < 768);
       });

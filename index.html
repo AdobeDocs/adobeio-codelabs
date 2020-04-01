@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <meta name="description" content="Guided, tutorial, hands-on coding experience, curated list of awesome apps built on top of the Adobe I/O Ecosystem to help you get started on any project">
+
+  <title>Adobe I/O CodeLabs</title>
+
+  <link rel="icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
+
+  <link rel="stylesheet" href="https://unpkg.com/@adobe/coral-spectrum@4.5.4/dist/css/coral.min.css">
+  <script src="https://unpkg.com/@adobe/coral-spectrum@4.5.4/dist/js/coral.min.js" data-coral-icons-external="js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #main {
+      width: calc(100% - 256px);
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: 0;
+      overflow-y: auto;
+    }
+
+    #main + .spinner {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #main.is-loading {
+      opacity: .4;
+      pointer-events: none;
+    }
+
+    #main.is-loading + .spinner {
+      visibility: visible;
+    }
+
+    .main-wrapper {
+      padding: 20px 52px 0 52px;
+      max-width: 1080px;
+      min-width: 304px;
+      min-height: calc(100vh - 64px);
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    #sideNav {
+      height: 100%;
+      width: 256px;
+      box-sizing: border-box;
+      padding-left: 24px;
+      overflow: scroll;
+      transition: transform 160ms ease-in-out;
+      position: relative;
+      z-index: 10;
+    }
+
+    #menu {
+      width: 200px;
+      margin: 16px 0;
+    }
+
+    #menu a[is="coral-sidenav-item"] {
+      text-transform: capitalize;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-top: 32px;
+      margin-bottom: 32px;
+      line-height: normal;
+      text-decoration: none;
+    }
+
+    .logo svg {
+      height: 32px;
+      width: 36px !important;
+      fill: currentColor;
+      color: rgb(225, 37, 27);
+    }
+
+    .logo h1 {
+      margin: 0 16px;
+    }
+
+    .nav-toggle-header {
+      display: none;
+      height: 48px;
+      box-sizing: border-box;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-toggle-header .toggle-icon {
+      height: 36px;
+      width: 36px;
+      fill: currentColor;
+      color: rgb(110, 110, 110);
+      left: 4px;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    .nav-toggle-header .adobe-icon {
+      height: 32px;
+      width: 36px !important;
+      fill: currentColor;
+      color: rgb(225, 37, 27);
+    }
+
+    .nav-toggle-header h1 {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .nav-toggle-header a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    #navToggleOverlay {
+      transition: opacity 160ms ease-in;
+      background-color: rgba(0, 0, 0, .4);
+      pointer-events: none;
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(256px, 256px));
+      grid-gap: 32px;
+      margin-top: 16px;
+    }
+
+    .grid-item > a {
+      color: inherit;
+    }
+
+    .grid-item coral-card-asset {
+      height: 200px;
+    }
+
+    #search {
+      margin-bottom: 24px;
+      float: left;
+      clear: both;
+      width: 208px;
+    }
+
+    #search input {
+      width: 100% !important;
+    }
+
+    .search-panel {
+      margin-top: 64px;
+    }
+
+    .search-panel .search-result {
+      margin: 16px 0;
+    }
+
+    .search-panel .search-result-description {
+      margin-top: 8px;
+    }
+
+    .search-panel .search-empty {
+      position: absolute;
+      top: 50%;
+      height: 200px;
+      margin-top: -132px;
+      text-align: center;
+      right: 0;
+      left: 0;
+    }
+
+    .search-panel .search-empty-illustration {
+      width: 200px;
+      height: 98px;
+      margin-bottom: 24px;
+      fill: #b6b6b6;
+    }
+
+    .header {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .footer {
+      height: 64px;
+      margin: 0 24px;
+      overflow-y: auto;
+    }
+
+    .footer-rule,
+    .footer ul {
+      min-width: 564px;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 5px 0;
+      margin: 0;
+      font-size: 11px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .footer ul > li {
+      padding: 3px 0;
+      margin-right: 32px;
+    }
+
+    .footer ul > li:last-child {
+      margin-right: 0;
+    }
+
+    .footer ul > li a {
+      text-decoration: none;
+    }
+
+    @media screen and (max-width: 960px) {
+      .main-wrapper {
+        min-height: calc(100vh - 112px);
+      }
+
+      #search {
+        margin-top: 24px;
+      }
+
+      .nav-toggle-header {
+        display: flex;
+      }
+
+      #navToggleOverlay.is-open {
+        pointer-events: auto;
+        opacity: 1;
+      }
+
+      .logo {
+        display: none;
+      }
+
+      #main {
+        top: 48px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 48px);
+      }
+
+      #sideNav {
+        overflow: hidden;
+        transform: translateX(-100%);
+      }
+
+      #sideNav.is-open {
+        overflow: auto;
+        transform: translateX(0);
+      }
+
+      #sideNav > * {
+        transition: visibility 0ms linear 500ms;
+        visibility: hidden;
+      }
+
+      #sideNav.is-open > * {
+        transition-delay: 0ms;
+        visibility: visible;
+      }
+    }
+
+    .coral--light #sideNav,
+    .coral--light .nav-toggle-header {
+      background-color: rgb(245, 245, 245);
+    }
+
+    .coral--dark #sideNav,
+    .coral--dark .nav-toggle-header {
+      background-color: rgb(50, 50, 50);
+    }
+  </style>
+</head>
+<body>
+  <div id="navToggleOverlay"></div>
+  <div class="nav-toggle-header" role="banner">
+    <a href="../">
+      <svg class="adobe-icon" viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
+        <polygon points="19,0 30,0 30,26"></polygon>
+        <polygon points="11.1,0 0,0 0,26"></polygon>
+        <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
+      </svg>
+      <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
+    </a>
+    <button is="coral-button" variant="quietaction" icon="spectrum-css-icon-TripleGripper" id="navToggleAction" class="toggle-icon" aria-label="Show Navigation Menu"></button>
+  </div>
+
+  <div id="sideNav" role="navigation" aria-label="Navigation Menu">
+    <a class="logo" href="../">
+      <svg viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
+        <polygon points="19,0 30,0 30,26"></polygon>
+        <polygon points="11.1,0 0,0 0,26"></polygon>
+        <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
+      </svg>
+
+      <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
+    </a>
+
+    <label id="search-label" class="u-coral-screenReaderOnly">Search</label>
+    <coral-search id="search" placeholder="Search" role="search" labelledBy="search-label" autocomplete="off"></coral-search>
+
+    <nav is="coral-sidenav" id="menu">
+      <a is="coral-sidenav-item" href="#" data-type="lab">Pinned CodeLabs</a>
+      <a is="coral-sidenav-item" href="#" data-type="showcase">Awesome Apps</a>
+      <a is="coral-sidenav-item" href="#" data-type="doc">Featured documentation</a>
+    </nav>
+  </div>
+  <main id="main">
+    <header class="header">
+      <coral-switch id="darkSwitch">Dark mode</coral-switch>
+      <a is="coral-anchorbutton" variant="cta" href="#" target="_blank">Create a CodeLab</a>
+    </header>
+
+    <div class="main-wrapper">
+      <coral-panelstack id="panels">
+        <coral-panel data-type="lab">
+          <h1 class="coral-Heading--XXXL">Adobe I/O CodeLabs</h1>
+          <p class="coral-Body--L">CodeLabs provide a guided, tutorial, hands-on coding experience.</p>
+
+          <h2 class="coral-Heading--L u-coral-padding-vertical">Pinned CodeLabs <coral-wait size="S" id="labSpinner"></coral-wait></h2>
+          <hr class="coral-Divider--L">
+          <div class="grid" id="labGrid"></div>
+        </coral-panel>
+
+        <coral-panel data-type="showcase">
+          <h1 class="coral-Heading--XXXL">Get inspired</h1>
+          <p class="coral-Body--L">Curated list of Awesome Apps built on top of the Adobe I/O Ecosystem.</p>
+
+          <h2 class="coral-Heading--L u-coral-padding-vertical">Awesome Apps <coral-wait size="S" id="showcaseSpinner"></coral-wait></h2>
+          <hr class="coral-Divider--L">
+          <div class="grid" id="showcaseGrid"></div>
+        </coral-panel>
+
+        <coral-panel data-type="doc">
+          <h1 class="coral-Heading--XXXL">Access knowledge</h1>
+          <p class="coral-Body--L">Featured documentation to help you get started on any project.</p>
+
+          <h2 class="coral-Heading--L u-coral-padding-vertical">Featured documentation <coral-wait size="S" id="docSpinner"></coral-wait></h2>
+          <hr class="coral-Divider--L">
+          <div class="grid" id="docGrid"></div>
+        </coral-panel>
+
+        <coral-panel data-type="search" class="search-panel">
+          <coral-tabview id="searchTabView">
+            <coral-tablist>
+              <coral-tab data-type="lab">CodeLabs</coral-tab>
+              <coral-tab data-type="showcase">Apps</coral-tab>
+              <coral-tab data-type="doc">Docs</coral-tab>
+              <coral-tab>All</coral-tab>
+            </coral-tablist>
+            <coral-panelstack>
+              <coral-panel></coral-panel>
+              <coral-panel></coral-panel>
+              <coral-panel></coral-panel>
+              <coral-panel></coral-panel>
+            </coral-panelstack>
+          </coral-tabview>
+        </coral-panel>
+      </coral-panelstack>
+    </div>
+
+    <footer class="footer">
+      <hr class="footer-rule coral-Divider--S" />
+      <ul>
+        <li>
+          © Adobe. All rights reserved.
+        </li>
+        <li>
+          <a class="coral-Link--quiet" href="https://www.adobe.com/privacy.html">Privacy (Updated)</a>
+        </li>
+        <li>
+          <a class="coral-Link--quiet" href="https://www.adobe.com/legal/terms.html">Terms of use</a>
+        </li>
+        <li>
+          <a class="coral-Link--quiet" href="https://www.adobe.com/privacy/cookies.html">Cookies</a>
+        </li>
+        <li>
+          <a class="coral-Link--quiet" href="https://www.adobe.com/privacy/ca-rights.html">Do not sell my personal information</a>
+        </li>
+      </ul>
+    </footer>
+  </main>
+  <coral-wait centered class="spinner" size="L"></coral-wait>
+  <coral-popover placement="bottom" smart id="searchAutocomplete" focusonshow="off" returnfocus="off">
+    <coral-anchorlist id="searchAutocompleteList">
+      <a href="#" is="coral-anchorlist-item">Anchor a</a>
+      <a href="#" is="coral-anchorlist-item">Anchor b</a>
+    </coral-anchorlist>
+  </coral-popover>
+
+  <script>
+    (() => {
+      let isLarge = window.innerWidth < 768;
+      document.body.classList.toggle('coral--large', isLarge);
+      window.addEventListener('resize', () => {
+        document.body.classList.toggle('coral--large', window.innerWidth < 768);
+      });
+
+      let storage;
+      try {
+        // In case disabled
+        storage = window.sessionStorage;
+      } catch (e) {
+        storage = {};
+      }
+
+      let isDark;
+      const toggleDarkMode = () => {
+        document.body.classList.toggle('coral--dark', isDark);
+        document.body.classList.toggle('coral--light', !isDark);
+        main.classList.toggle('coral--darkest', isDark);
+        main.classList.toggle('coral--lightest', !isDark);
+      };
+
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        isDark = true;
+      }
+
+      darkSwitch.checked = isDark;
+      toggleDarkMode();
+
+      darkSwitch.addEventListener('change', () => {
+        isDark = darkSwitch.checked;
+        toggleDarkMode();
+      });
+
+      // Navigation
+      const toggleSideNav = () => {
+        sideNav.classList.toggle('is-open', !sideNav.classList.contains('is-open'));
+        navToggleOverlay.classList.toggle('is-open', !navToggleOverlay.classList.contains('is-open'));
+        navToggleAction.setAttribute('aria-expanded', sideNav.classList.contains('is-open'));
+        navToggleAction.selected = sideNav.classList.contains('is-open');
+      };
+
+      const closeSideNav = () => {
+        requestAnimationFrame(() => {
+          if (sideNav.classList.contains('is-open')) {
+            toggleSideNav();
+            navToggleAction.focus();
+          }
+        });
+      };
+
+      navToggleAction.addEventListener('click', toggleSideNav);
+      navToggleOverlay.addEventListener('click', toggleSideNav);
+
+      // Init navigation
+      (async () => {
+        if (!storage.index) {
+          const INDEX_ACTION = 'https://adobeioruntime.net/api/v1/web/ringel/aio-codelabs-0.0.1/index';
+          const find = await fetch(INDEX_ACTION);
+          // Store the index locally for autocomplete
+          storage.index = await find.text();
+        }
+
+        menu.on('coral-sidenav:change', async () => {
+          if (!storage.index || !menu.selectedItem) {
+            return;
+          }
+          const index = JSON.parse(storage.index);
+          const selected = menu.selectedItem;
+          const type = selected.dataset.type;
+          const panel = panels.items.getAll().find(item => item.dataset.type === type);
+
+          panel.selected = true;
+
+          closeSideNav();
+
+          const grid = document.getElementById(`${type}Grid`);
+          const spinner = document.getElementById(`${type}Spinner`);
+          const DEFAULT_THUMBNAIL = 'https://avatars0.githubusercontent.com/u/12461336?s=200&v=4';
+
+          // Display pinned repos
+          if (type && grid && grid.innerHTML === '') {
+            const items = index.filter(item => item.type === type && item.isPinned);
+
+            for (const item of items) {
+              const el = document.createElement('div');
+              el.classList.add('grid-item');
+
+              el.innerHTML = `
+              <a href="${item.repo}" target="_blank">
+                <coral-card fixedwidth variant="quiet">
+                  <coral-card-asset>
+                    <img alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}"/>
+                  </coral-card-asset>
+                  <coral-card-content>
+                    <coral-card-context>${item.author ? `${item.author} -` : ''} ${item.published} ${item.duration ? `- ${item.duration} min read` : ''}</coral-card-context>
+                    <coral-card-title><strong>${item.title}</strong></coral-card-title>
+                    <coral-card-description>${item.description}
+                      ${item.keywords && item.keywords.length ? `
+                        <p>
+                          <coral-taglist readonly>
+                            ${item.keywords.map(keyword => `<coral-tag>${keyword}</coral-tag>`).join('')}
+                          </coral-taglist>
+                        </p>
+                      ` : ''}
+                    </coral-card-description>
+                  </coral-card-content>
+                </coral-card>
+              </a>
+            `;
+              grid.appendChild(el);
+            }
+
+            spinner.remove();
+          }
+        });
+
+        // Pinned repos
+        menu.items.first().selected = true;
+      })();
+
+      // Init Search
+      (() => {
+        const SEARCH_ACTION = 'https://adobeioruntime.net/api/v1/web/ringel/aio-codelabs-0.0.1/search';
+
+        const closeAutocomplete = () => {
+          searchAutocomplete.target = null;
+          searchAutocomplete.open = false;
+        };
+
+        search._labellableElement.autocomplete = 'off';
+
+        search.on('coral-search:input', () => {
+          if (!storage.index) {
+            return;
+          }
+
+          const index = JSON.parse(storage.index);
+
+          if (search.value) {
+            const max = 10;
+            searchAutocomplete.style.width = `${search.offsetWidth}px`;
+            searchAutocompleteList.items.clear();
+
+            index.some((item, i) => {
+              if (i === max) {
+                return true;
+              }
+
+              const query = search.value.toLowerCase();
+              const title = item.title.toLowerCase();
+              const description = item.description.toLowerCase();
+
+              if (title.includes(query) || description.includes(query)) {
+                searchAutocompleteList.items.add({
+                  content: {
+                    textContent: item.title
+                  },
+                  href: item.repo || item.url,
+                  target: '_blank'
+                });
+              }
+            });
+
+            if (searchAutocompleteList.items.length) {
+              searchAutocomplete.target = search;
+              searchAutocomplete.open = true;
+            }
+            else {
+              closeAutocomplete();
+            }
+          }
+          else {
+            closeAutocomplete();
+          }
+        });
+
+        search.on('keydown', (e) => {
+          if (e.key === 'ArrowDown' && searchAutocompleteList.items.length) {
+            searchAutocompleteList.items.first().focus();
+          }
+        });
+
+        // Trigger search on tab change
+        searchTabView.on('coral-tabview:change', () => {
+          search.trigger('coral-search:submit');
+        });
+
+        search.on('coral-search:submit', async () => {
+          if (!search.value) {
+            return;
+          }
+
+          // Close if opened
+          closeAutocomplete();
+
+          main.classList.add('is-loading');
+
+          // Deselect
+          if (menu.selectedItem) {
+            menu.selectedItem.selected = false;
+          }
+
+          // Show search panel
+          panels.items.last().selected = true;
+
+          closeSideNav();
+
+          const selectedTab = searchTabView.tabList.selectedItem;
+          const panel = searchTabView.panelStack.items.getAll()[searchTabView.tabList.items.getAll().indexOf(selectedTab)];
+          const type = selectedTab.dataset.type ? `&type=${selectedTab.dataset.type}` : '';
+          const find = await fetch(`${SEARCH_ACTION}?q=${search.value}${type}`);
+          const {res} = await find.json();
+
+          if (res.count === 0) {
+            panel.innerHTML = `
+             <div class="search-empty u-coral-padding-horizontal">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 90" class="search-empty-illustration">
+                    <g>
+                        <g>
+                            <path d="M37.5,69A24.54,24.54,0,1,0,17,57.92l0,0L1.46,73.52A5,5,0,0,0,5,82.05H5a5,5,0,0,0,3.54-1.47L24.06,65l0,0A24.33,24.33,0,0,0,37.5,69Zm0-46A21.5,21.5,0,1,1,16,44.5,21.52,21.52,0,0,1,37.5,23ZM6.41,78.46A2,2,0,0,1,5,79.05H5a2,2,0,0,1-1.42-3.42L18.83,60.34a25.21,25.21,0,0,0,2.83,2.83Z"></path>
+                            <path d="M28.67,53.33a1.51,1.51,0,0,0,1.06.44,1.49,1.49,0,0,0,1.06-.44l6.71-6.71,6.71,6.71a1.5,1.5,0,0,0,2.12,0,1.49,1.49,0,0,0,0-2.12L39.62,44.5l6.71-6.71a1.49,1.49,0,0,0,0-2.12,1.51,1.51,0,0,0-2.12,0L37.5,42.38l-6.71-6.71a1.5,1.5,0,0,0-2.12,2.12l6.71,6.71-6.71,6.71A1.51,1.51,0,0,0,28.67,53.33Z"></path>
+                            <path d="M102.5,31a1.5,1.5,0,0,0-1.5,1.5V86.17a.83.83,0,0,1-.83.83H38.83a.83.83,0,0,1-.83-.83V73.5a1.5,1.5,0,0,0-3,0V86.17A3.84,3.84,0,0,0,38.83,90h61.34A3.84,3.84,0,0,0,104,86.17V32.5A1.5,1.5,0,0,0,102.5,31Z"></path>
+                            <path d="M37.5,17A1.5,1.5,0,0,0,39,15.5V3.83A.83.83,0,0,1,39.83,3H75V26.5A1.5,1.5,0,0,0,76.5,28h25.55a1.5,1.5,0,0,0,1-2.57L77.55.43a1.43,1.43,0,0,0-.49-.32A1.41,1.41,0,0,0,76.52,0H39.83A3.84,3.84,0,0,0,36,3.83V15.5A1.5,1.5,0,0,0,37.5,17ZM78,5.07,98.37,25H78Z"></path>
+                        </g>
+                    </g>
+                </svg>
+                <h3 class="coral-Heading--light coral-Heading--L">
+                  Sorry, we couldn't find any results for <strong>${search.value}</strong>
+                </h3>
+                <p class="coral-Body--S">Make sure all the words are spelled correctly or try to refine your keywords.</p>
+              </div>
+            `;
+          }
+          else {
+            let html = `<p class="coral-Body--M u-coral-padding-vertical">${res.count} search results for <strong>${search.value}</strong> in ${selectedTab.label.textContent}</p>`;
+
+            // Display search results
+            for (const item of res.items) {
+              html += `
+            <div class="coral-Body--M search-result">
+              <div><a target="_blank" href="${item.url}" class="coral-Link--quiet coral-Heading--M">${item.title}</a></div>
+              ${item.description ? `<div class="coral-Body--S search-result-description">${item.description}</div>` : ''}
+              ${item.files.map(file => `<div><a target="_blank" class="coral-Link" href="${file.url}">${file.title}</a></div>`).join('')}
+            </div>
+          `;
+            }
+
+            panel.innerHTML = html;
+          }
+
+          main.classList.remove('is-loading');
+        });
+      })();
+    })();
+  </script>
+</body>
+</html>

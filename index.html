@@ -304,19 +304,17 @@
 <body>
   <div id="navToggleOverlay"></div>
   <div class="nav-toggle-header" role="banner">
-    <a href="../">
-      <svg class="adobe-icon" viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
-        <polygon points="19,0 30,0 30,26"></polygon>
-        <polygon points="11.1,0 0,0 0,26"></polygon>
-        <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
-      </svg>
-      <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
-    </a>
+    <svg class="adobe-icon" viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
+      <polygon points="19,0 30,0 30,26"></polygon>
+      <polygon points="11.1,0 0,0 0,26"></polygon>
+      <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
+    </svg>
+    <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
     <button is="coral-button" variant="quietaction" icon="spectrum-css-icon-TripleGripper" id="navToggleAction" class="toggle-icon" aria-label="Show Navigation Menu"></button>
   </div>
 
   <div id="sideNav" role="navigation" aria-label="Navigation Menu">
-    <a class="logo" href="../">
+    <div class="logo">
       <svg viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
         <polygon points="19,0 30,0 30,26"></polygon>
         <polygon points="11.1,0 0,0 0,26"></polygon>
@@ -324,7 +322,7 @@
       </svg>
 
       <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
-    </a>
+    </div>
 
     <label id="search-label" class="u-coral-screenReaderOnly">Search</label>
     <coral-search id="search" placeholder="Search" role="search" labelledBy="search-label" autocomplete="off"></coral-search>
@@ -338,7 +336,7 @@
   <main id="main">
     <header class="header">
       <coral-switch id="darkSwitch">Dark mode</coral-switch>
-      <a is="coral-anchorbutton" variant="cta" href="#" target="_blank">Create a CodeLab</a>
+      <a is="coral-anchorbutton" variant="cta" href="https://github.com/AdobeDocs/adobeio-codelabs-template" target="_blank">Create a CodeLab</a>
     </header>
 
     <div class="main-wrapper">
@@ -412,10 +410,7 @@
   </main>
   <coral-wait centered class="spinner" size="L"></coral-wait>
   <coral-popover placement="bottom" smart id="searchAutocomplete" focusonshow="off" returnfocus="off">
-    <coral-anchorlist id="searchAutocompleteList">
-      <a href="#" is="coral-anchorlist-item">Anchor a</a>
-      <a href="#" is="coral-anchorlist-item">Anchor b</a>
-    </coral-anchorlist>
+    <coral-anchorlist id="searchAutocompleteList"></coral-anchorlist>
   </coral-popover>
 
   <script>

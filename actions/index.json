@@ -128,7 +128,7 @@
     "type": "showcase"
   },
   {
-    "repo": "https://github.com/icaraps/cna-barcode-generator",
+    "url": "https://s3.amazonaws.com/adobe-cna/ringel/adobeio-cna-barcode-1.0.0-beta/index.html",
     "author": "Stephan Ringel",
     "published": "Aug 19, 2019",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/UPC-A-036000291452.svg/1920px-UPC-A-036000291452.svg.png",

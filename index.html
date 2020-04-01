@@ -520,7 +520,7 @@
               el.classList.add('grid-item');
 
               el.innerHTML = `
-              <a href="${item.repo}" target="_blank">
+              <a href="${item.repo || item.url}" target="_blank">
                 <coral-card fixedwidth variant="quiet">
                   <coral-card-asset>
                     <img alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}"/>

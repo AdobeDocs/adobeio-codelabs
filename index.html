@@ -19,6 +19,21 @@
       overflow: hidden;
     }
 
+    body {
+      opacity: 0;
+      transition: opacity ease-in-out 300ms;
+    }
+
+    body.is-ready {
+      opacity: 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        background-color: rgb(30, 30, 30);
+      }
+    }
+
     #main {
       width: calc(100% - 256px);
       height: 100%;
@@ -468,6 +483,8 @@
 
       navToggleAction.addEventListener('click', toggleSideNav);
       navToggleOverlay.addEventListener('click', toggleSideNav);
+
+      document.body.classList.add('is-ready');
 
       // Init navigation
       (async () => {

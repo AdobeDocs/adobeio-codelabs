@@ -1,9 +1,9 @@
 [
   {
-    "repo": "https://github.com/AdobeDocs/adobe-custom-applications",
+    "repo": "https://github.com/AdobeDocs/project-firefly",
     "published": "Jan 19, 2020",
-    "title": "Adobe Custom Applications Developer Guide",
-    "description": "This documentation provides an overview of Adobe Custom Applications as well as guides, reference documentation, and tools to help you begin developing your own custom applications",
+    "title": "Project Firefly by Adobe",
+    "description": "This documentation provides an overview of Project Firefly as well as guides, reference documentation, and tools to help you begin developing your own custom applications",
     "keywords": [
       "Runtime",
       "Events",

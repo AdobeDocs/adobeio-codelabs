@@ -190,7 +190,7 @@
     }
 
     .search-panel .search-result {
-      margin: 16px 0;
+      margin: 32px 0;
     }
 
     .search-panel .search-result-description {
@@ -392,10 +392,30 @@
               <coral-tab>All</coral-tab>
             </coral-tablist>
             <coral-panelstack>
-              <coral-panel></coral-panel>
-              <coral-panel></coral-panel>
-              <coral-panel></coral-panel>
-              <coral-panel></coral-panel>
+              <coral-panel>
+                <div class="search-empty u-coral-padding-horizontal"></div>
+                <p class="coral-Body--M u-coral-padding-vertical"></p>
+                <div class="grid"></div>
+                <div class="coral-Body--M search-result"></div>
+              </coral-panel>
+              <coral-panel>
+                <div class="search-empty u-coral-padding-horizontal"></div>
+                <div class="grid"></div>
+                <p class="coral-Body--M u-coral-padding-vertical"></p>
+                <div class="coral-Body--M search-result"></div>
+              </coral-panel>
+              <coral-panel>
+                <div class="search-empty u-coral-padding-horizontal"></div>
+                <p class="coral-Body--M u-coral-padding-vertical"></p>
+                <div class="grid"></div>
+                <div class="coral-Body--M search-result"></div>
+              </coral-panel>
+              <coral-panel>
+                <div class="search-empty u-coral-padding-horizontal"></div>
+                <p class="coral-Body--M u-coral-padding-vertical"></p>
+                <div class="grid"></div>
+                <div class="coral-Body--M search-result"></div>
+              </coral-panel>
             </coral-panelstack>
           </coral-tabview>
         </coral-panel>
@@ -463,6 +483,37 @@
         toggleDarkMode();
       });
 
+      const renderCard = (item) => {
+        const DEFAULT_THUMBNAIL = 'https://avatars0.githubusercontent.com/u/12461336?s=200&v=4';
+
+        const card = document.createElement('div');
+        card.classList.add('grid-item');
+        card.innerHTML = `
+          <a href="${item.repo || item.url}" target="_blank">
+            <coral-card fixedwidth variant="quiet">
+            <coral-card-asset>
+            <img alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}"/>
+            </coral-card-asset>
+            <coral-card-content>
+            <coral-card-context>${item.author ? `${item.author} -` : ''} ${item.published} ${item.duration ? `- ${item.duration} min read` : ''}</coral-card-context>
+              <coral-card-title><strong>${item.title}</strong></coral-card-title>
+              <coral-card-description>${item.description}
+                ${item.keywords && item.keywords.length ? `
+                  <p>
+                    <coral-taglist readonly>
+                      ${item.keywords.map(keyword => `<coral-tag>${keyword}</coral-tag>`).join('')}
+                    </coral-taglist>
+                  </p>
+                ` : ''}
+              </coral-card-description>
+            </coral-card-content>
+          </coral-card>
+        </a>
+        `;
+
+        return card;
+      };
+
       // Navigation
       const toggleSideNav = () => {
         sideNav.classList.toggle('is-open', !sideNav.classList.contains('is-open'));
@@ -509,41 +560,14 @@
 
           const grid = document.getElementById(`${type}Grid`);
           const spinner = document.getElementById(`${type}Spinner`);
-          const DEFAULT_THUMBNAIL = 'https://avatars0.githubusercontent.com/u/12461336?s=200&v=4';
 
           // Display pinned repos
           if (type && grid && grid.innerHTML === '') {
             const items = index.filter(item => item.type === type && item.isPinned);
 
             for (const item of items) {
-              const el = document.createElement('div');
-              el.classList.add('grid-item');
-
-              el.innerHTML = `
-              <a href="${item.repo || item.url}" target="_blank">
-                <coral-card fixedwidth variant="quiet">
-                  <coral-card-asset>
-                    <img alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}"/>
-                  </coral-card-asset>
-                  <coral-card-content>
-                    <coral-card-context>${item.author ? `${item.author} -` : ''} ${item.published} ${item.duration ? `- ${item.duration} min read` : ''}</coral-card-context>
-                    <coral-card-title><strong>${item.title}</strong></coral-card-title>
-                    <coral-card-description>${item.description}
-                      ${item.keywords && item.keywords.length ? `
-                        <p>
-                          <coral-taglist readonly>
-                            ${item.keywords.map(keyword => `<coral-tag>${keyword}</coral-tag>`).join('')}
-                          </coral-taglist>
-                        </p>
-                      ` : ''}
-                    </coral-card-description>
-                  </coral-card-content>
-                </coral-card>
-              </a>
-            `;
-              grid.appendChild(el);
+              grid.appendChild(renderCard(item));
             }
-
             spinner.remove();
           }
         });
@@ -620,7 +644,7 @@
         });
 
         search.on('coral-search:submit', async () => {
-          if (!search.value) {
+          if (!search.value || !storage.index) {
             return;
           }
 
@@ -639,47 +663,71 @@
 
           closeSideNav();
 
+          const index = JSON.parse(storage.index) || {};
           const selectedTab = searchTabView.tabList.selectedItem;
           const panel = searchTabView.panelStack.items.getAll()[searchTabView.tabList.items.getAll().indexOf(selectedTab)];
           const type = selectedTab.dataset.type ? `&type=${selectedTab.dataset.type}` : '';
+
+          const empty = panel.content.firstElementChild;
+          const results = empty.nextElementSibling;
+          const grid = results.nextElementSibling;
+          const details = grid.nextElementSibling;
+
           const find = await fetch(`${SEARCH_ACTION}?q=${search.value}${type}`);
           const {res} = await find.json();
 
           if (res.count === 0) {
-            panel.innerHTML = `
-             <div class="search-empty u-coral-padding-horizontal">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 90" class="search-empty-illustration">
-                    <g>
-                        <g>
-                            <path d="M37.5,69A24.54,24.54,0,1,0,17,57.92l0,0L1.46,73.52A5,5,0,0,0,5,82.05H5a5,5,0,0,0,3.54-1.47L24.06,65l0,0A24.33,24.33,0,0,0,37.5,69Zm0-46A21.5,21.5,0,1,1,16,44.5,21.52,21.52,0,0,1,37.5,23ZM6.41,78.46A2,2,0,0,1,5,79.05H5a2,2,0,0,1-1.42-3.42L18.83,60.34a25.21,25.21,0,0,0,2.83,2.83Z"></path>
-                            <path d="M28.67,53.33a1.51,1.51,0,0,0,1.06.44,1.49,1.49,0,0,0,1.06-.44l6.71-6.71,6.71,6.71a1.5,1.5,0,0,0,2.12,0,1.49,1.49,0,0,0,0-2.12L39.62,44.5l6.71-6.71a1.49,1.49,0,0,0,0-2.12,1.51,1.51,0,0,0-2.12,0L37.5,42.38l-6.71-6.71a1.5,1.5,0,0,0-2.12,2.12l6.71,6.71-6.71,6.71A1.51,1.51,0,0,0,28.67,53.33Z"></path>
-                            <path d="M102.5,31a1.5,1.5,0,0,0-1.5,1.5V86.17a.83.83,0,0,1-.83.83H38.83a.83.83,0,0,1-.83-.83V73.5a1.5,1.5,0,0,0-3,0V86.17A3.84,3.84,0,0,0,38.83,90h61.34A3.84,3.84,0,0,0,104,86.17V32.5A1.5,1.5,0,0,0,102.5,31Z"></path>
-                            <path d="M37.5,17A1.5,1.5,0,0,0,39,15.5V3.83A.83.83,0,0,1,39.83,3H75V26.5A1.5,1.5,0,0,0,76.5,28h25.55a1.5,1.5,0,0,0,1-2.57L77.55.43a1.43,1.43,0,0,0-.49-.32A1.41,1.41,0,0,0,76.52,0H39.83A3.84,3.84,0,0,0,36,3.83V15.5A1.5,1.5,0,0,0,37.5,17ZM78,5.07,98.37,25H78Z"></path>
-                        </g>
-                    </g>
-                </svg>
-                <h3 class="coral-Heading--light coral-Heading--L">
-                  Sorry, we couldn't find any results for <strong>${search.value}</strong>
-                </h3>
-                <p class="coral-Body--S">Make sure all the words are spelled correctly or try to refine your keywords.</p>
-              </div>
+            empty.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 90" class="search-empty-illustration">
+                  <g>
+                      <g>
+                          <path d="M37.5,69A24.54,24.54,0,1,0,17,57.92l0,0L1.46,73.52A5,5,0,0,0,5,82.05H5a5,5,0,0,0,3.54-1.47L24.06,65l0,0A24.33,24.33,0,0,0,37.5,69Zm0-46A21.5,21.5,0,1,1,16,44.5,21.52,21.52,0,0,1,37.5,23ZM6.41,78.46A2,2,0,0,1,5,79.05H5a2,2,0,0,1-1.42-3.42L18.83,60.34a25.21,25.21,0,0,0,2.83,2.83Z"></path>
+                          <path d="M28.67,53.33a1.51,1.51,0,0,0,1.06.44,1.49,1.49,0,0,0,1.06-.44l6.71-6.71,6.71,6.71a1.5,1.5,0,0,0,2.12,0,1.49,1.49,0,0,0,0-2.12L39.62,44.5l6.71-6.71a1.49,1.49,0,0,0,0-2.12,1.51,1.51,0,0,0-2.12,0L37.5,42.38l-6.71-6.71a1.5,1.5,0,0,0-2.12,2.12l6.71,6.71-6.71,6.71A1.51,1.51,0,0,0,28.67,53.33Z"></path>
+                          <path d="M102.5,31a1.5,1.5,0,0,0-1.5,1.5V86.17a.83.83,0,0,1-.83.83H38.83a.83.83,0,0,1-.83-.83V73.5a1.5,1.5,0,0,0-3,0V86.17A3.84,3.84,0,0,0,38.83,90h61.34A3.84,3.84,0,0,0,104,86.17V32.5A1.5,1.5,0,0,0,102.5,31Z"></path>
+                          <path d="M37.5,17A1.5,1.5,0,0,0,39,15.5V3.83A.83.83,0,0,1,39.83,3H75V26.5A1.5,1.5,0,0,0,76.5,28h25.55a1.5,1.5,0,0,0,1-2.57L77.55.43a1.43,1.43,0,0,0-.49-.32A1.41,1.41,0,0,0,76.52,0H39.83A3.84,3.84,0,0,0,36,3.83V15.5A1.5,1.5,0,0,0,37.5,17ZM78,5.07,98.37,25H78Z"></path>
+                      </g>
+                  </g>
+              </svg>
+              <h3 class="coral-Heading--light coral-Heading--L">
+                Sorry, we couldn't find any results for <strong>${search.value}</strong>
+              </h3>
+              <p class="coral-Body--S">Make sure all the words are spelled correctly or try to refine your keywords.</p>
             `;
+
+            empty.hidden = false;
+            results.hidden = true;
+            grid.hidden = true;
+            details.hidden = true;
           }
           else {
-            let html = `<p class="coral-Body--M u-coral-padding-vertical">${res.count} search results for <strong>${search.value}</strong> in ${selectedTab.label.textContent}</p>`;
+            results.innerHTML = `
+              ${res.count} search results for <strong>${search.value}</strong> in ${selectedTab.label.textContent}
+            `;
 
             // Display search results
-            for (const item of res.items) {
-              html += `
-            <div class="coral-Body--M search-result">
-              <div><a target="_blank" href="${item.url}" class="coral-Link--quiet coral-Heading--M">${item.title}</a></div>
-              ${item.description ? `<div class="coral-Body--S search-result-description">${item.description}</div>` : ''}
-              ${item.files.map(file => `<div><a target="_blank" class="coral-Link" href="${file.url}">${file.title}</a></div>`).join('')}
-            </div>
-          `;
+            grid.innerHTML = '';
+            details.innerHTML = '';
+
+            for (const resItem of res.items) {
+              const item = index.find(item => item.url === resItem.url || item.repo === resItem.url);
+
+              if (item) {
+                grid.appendChild(renderCard(item));
+              }
+
+              details.innerHTML += `
+                <div class="coral-Body--M search-result">
+                  <div><a target="_blank" href="${resItem.url}" class="coral-Link--quiet coral-Heading--M">${resItem.title}</a></div>
+                  ${resItem.description ? `<div class="coral-Body--S search-result-description">${resItem.description}</div>` : ''}
+                  ${resItem.files.map(file => `<div><a target="_blank" class="coral-Link" href="${file.url}">${file.title}</a></div>`).join('')}
+                </div>
+              `;
             }
 
-            panel.innerHTML = html;
+            empty.hidden = true;
+            results.hidden = false;
+            grid.hidden = false;
+            details.hidden = false;
           }
 
           main.classList.remove('is-loading');

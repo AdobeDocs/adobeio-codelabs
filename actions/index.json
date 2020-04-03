@@ -80,6 +80,17 @@
     "type": "doc"
   },
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-howto",
+    "url": "https://adobeio-codelabs-howto-adobedocs.project-helix.page",
+    "author": "Duy Nguyen",
+    "published": "April 03, 2020",
+    "duration": 10,
+    "title": "How to Build an Adobe I/O CodeLab",
+    "description": "In this lab you will learn how to build an Adobe I/O CodeLab.",
+    "isPinned": true,
+    "type": "lab"
+  },
+  {
     "repo": "https://github.com/adobe/adobe-sensei-ai-functions",
     "url": "https://opensource.adobe.com/adobe-sensei-ai-functions",
     "author": "Holly Schinsky",
@@ -88,7 +99,6 @@
     "thumbnail": "https://www.adobe.com/content/dam/www/us/en/insights/the-magic-of-AI-in-a-content-driven-world/0061902-12.en.sensei.counter-intelligence.feature-1.adobe-clouds.710x295.png.img.png",
     "title": "AI Compositions powered by Adobe Sensei and Adobe I/O Runtime",
     "description": "In this lab you will learn how to build a serverless app that takes advantage of Adobe’s cloud offerings, Adobe I/O developer tools and APIs and Adobe Sensei functions.",
-    "isPinned": true,
     "type": "lab"
   },
   {

@@ -489,7 +489,7 @@
         const card = document.createElement('div');
         card.classList.add('grid-item');
         card.innerHTML = `
-          <a href="${item.repo || item.url}" target="_blank">
+          <a href="${item.url || item.repo}" target="_blank">
             <coral-card fixedwidth variant="quiet">
             <coral-card-asset>
             <img alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}"/>

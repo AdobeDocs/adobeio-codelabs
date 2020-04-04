@@ -201,7 +201,7 @@
       position: absolute;
       top: 50%;
       height: 200px;
-      margin-top: -132px;
+      margin-top: -100px;
       text-align: center;
       right: 0;
       left: 0;
@@ -258,6 +258,8 @@
     @media screen and (max-width: 960px) {
       .main-wrapper {
         min-height: calc(100vh - 112px);
+        padding-left: 24px;
+        padding-right: 24px;
       }
 
       #search {
@@ -341,6 +343,9 @@
 
     <label id="search-label" class="u-coral-screenReaderOnly">Search</label>
     <coral-search id="search" placeholder="Search" role="search" labelledBy="search-label" autocomplete="off"></coral-search>
+    <coral-popover placement="bottom" smart id="searchAutocomplete" focusonshow="off" returnfocus="off">
+      <coral-anchorlist id="searchAutocompleteList"></coral-anchorlist>
+    </coral-popover>
 
     <nav is="coral-sidenav" id="menu">
       <a is="coral-sidenav-item" href="#" data-type="lab">Pinned CodeLabs</a>
@@ -444,9 +449,6 @@
     </footer>
   </main>
   <coral-wait centered class="spinner" size="L"></coral-wait>
-  <coral-popover placement="bottom" smart id="searchAutocomplete" focusonshow="off" returnfocus="off">
-    <coral-anchorlist id="searchAutocompleteList"></coral-anchorlist>
-  </coral-popover>
 
   <script>
     (() => {
@@ -595,31 +597,36 @@
           const index = JSON.parse(storage.index);
 
           if (search.value) {
-            const max = 10;
+            const max = window.innerWidth < 768 ? 3 : 10;
+            const results = [];
             searchAutocomplete.style.width = `${search.offsetWidth}px`;
             searchAutocompleteList.items.clear();
 
-            index.some((item, i) => {
-              if (i === max) {
-                return true;
-              }
-
+            index.some((item) => {
               const query = search.value.toLowerCase();
               const title = item.title.toLowerCase();
               const description = item.description.toLowerCase();
 
               if (title.includes(query) || description.includes(query)) {
+                results.push(item);
+              }
+            });
+
+            if (results.length) {
+              results.some((item, i) => {
+                if (i === max) {
+                  return true;
+                }
+
                 searchAutocompleteList.items.add({
                   content: {
                     textContent: item.title
                   },
-                  href: item.repo || item.url,
+                  href: item.url || item.repo,
                   target: '_blank'
                 });
-              }
-            });
+              });
 
-            if (searchAutocompleteList.items.length) {
               searchAutocomplete.target = search;
               searchAutocomplete.open = true;
             }

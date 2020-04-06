@@ -86,7 +86,7 @@
     "published": "April 03, 2020",
     "duration": 10,
     "title": "How to Build an Adobe I/O CodeLab",
-    "description": "In this lab you will learn how to build an Adobe I/O CodeLab.",
+    "description": "In this lab you will learn how to create a new codelab from the template repository, develop the content locally as well as publish it to the Adobe I/O CodeLabs website.",
     "isPinned": true,
     "type": "lab"
   },

@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const {Core} = require('@adobe/aio-sdk');
 const index = require('../index.json');
-const secret = require('./secret.json');
 
 async function main(params) {
   const logger = Core.Logger('main', {level: params.LOG_LEVEL});
@@ -20,7 +19,7 @@ async function main(params) {
     const search = await fetch(`https://api.github.com/search/code?q=${repos}+extension:md+in:file+${query}&per_page=${limit}&sort=${sort}`, {
       headers: {
         'user-agent': 'node.js',
-        'Authorization': `token ${secret.token}`
+        'Authorization': `token ${params.github_token}`
       }
     });
   

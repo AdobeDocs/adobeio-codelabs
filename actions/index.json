@@ -91,28 +91,6 @@
     "type": "lab"
   },
   {
-    "repo": "https://github.com/adobe/adobe-sensei-ai-functions",
-    "url": "https://opensource.adobe.com/adobe-sensei-ai-functions",
-    "author": "Holly Schinsky",
-    "published": "Feb 11, 2018",
-    "duration": 90,
-    "thumbnail": "https://www.adobe.com/content/dam/www/us/en/insights/the-magic-of-AI-in-a-content-driven-world/0061902-12.en.sensei.counter-intelligence.feature-1.adobe-clouds.710x295.png.img.png",
-    "title": "AI Compositions powered by Adobe Sensei and Adobe I/O Runtime",
-    "description": "In this lab you will learn how to build a serverless app that takes advantage of Adobe’s cloud offerings, Adobe I/O developer tools and APIs and Adobe Sensei functions.",
-    "type": "lab"
-  },
-  {
-    "repo": "https://github.com/adobe/faast-path-to-beautiful-apps",
-    "url": "https://opensource.adobe.com/faast-path-to-beautiful-apps",
-    "author": "Sarah Xu",
-    "published": "Mar 10, 2019",
-    "duration": 30,
-    "title": "Adobe I/O Lab Workbook - The FaaSt path to Beautiful Applications",
-    "description": "In this lab, you will learn what is Adobe I/O Runtime and serverless computing, how to create your own Runtime serverless integration with I/O Console and Adobe CLI, best practice for serverless development, using serverless development in event-driven Experience Cloud Use Cases",
-    "isPinned": true,
-    "type": "lab"
-  },
-  {
     "url": "https://adobe-consulting-services.github.io/acs-aem-commons/features/adobe-io-apis/index.html",
     "published": "Sep 24, 2018",
     "thumbnail": "https://avatars0.githubusercontent.com/u/5420974?s=200&v=4",

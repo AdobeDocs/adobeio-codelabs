@@ -3,7 +3,7 @@ name: AIO App CI
 on:
   push:
     branches:
-      - gh-pages
+      - master
 jobs:
   deploy:
     name: Deploy to Stage

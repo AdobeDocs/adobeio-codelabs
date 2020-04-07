@@ -1,6 +1,9 @@
 name: AIO App CI
 
-on: [release]
+on:
+  push:
+    branches:
+      - gh-pages
 jobs:
   deploy:
     name: Deploy to Prod

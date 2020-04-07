@@ -100,7 +100,7 @@
       "AEM"
     ],
     "isPinned": true,
-    "type": "showcase"
+    "type": "app"
   },
   {
     "repo": "https://github.com/adobe/adobe-cloudmanager-io-runtime-deployer",
@@ -113,19 +113,19 @@
       "AEM"
     ],
     "isPinned": true,
-    "type": "showcase"
+    "type": "app"
   },
   {
     "url": "https://s3.amazonaws.com/adobe-cna/ringel/adobeio-cna-barcode-1.0.0-beta/index.html",
     "author": "Stephan Ringel",
     "published": "Aug 19, 2019",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/UPC-A-036000291452.svg/1920px-UPC-A-036000291452.svg.png",
+    "thumbnail": "https://t3.ftcdn.net/jpg/00/33/32/00/240_F_33320026_58KLfKN9rUj0KVMxvQ9RV86nVHm7ux2q.jpg",
     "title": "CNA Barcode Generator",
     "description": "A Barcode Generator built as a Cloud Native App (CNA)",
     "keywords": [
       "CNA"
     ],
     "isPinned": true,
-    "type": "showcase"
+    "type": "app"
   }
 ]

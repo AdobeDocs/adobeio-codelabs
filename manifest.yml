@@ -8,6 +8,7 @@ packages:
         runtime: 'nodejs:10'
         inputs:
           LOG_LEVEL: debug
+          github_token: GITHUB_TOKEN
         annotations:
           final: true
       index:

@@ -3,29 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <meta name="description" content="CodeLabs provide guided hands-on coding experiences, a curated list of awesome apps built on top of the Adobe I/O Ecosystem and featured documentation to help you get started on any project">
+  <meta name="description" content="Adobe I/O Developers provide guided hands-on coding experiences, a curated list of awesome apps built on top of the Adobe I/O Ecosystem and featured documentation to help you get started on any project">
 
-  <title>Adobe I/O CodeLabs</title>
+  <title>Adobe I/O Developers</title>
 
   <link rel="icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
 
-  <link rel="stylesheet" href="https://unpkg.com/@adobe/coral-spectrum@4.5.7/dist/css/coral.min.css">
-  <script src="https://unpkg.com/@adobe/coral-spectrum@4.5.7/dist/js/coral.min.js" data-coral-icons-external="js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-global.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-medium.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-large.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-light.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-lightest.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-dark.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/vars@2.2.0/dist/spectrum-darkest.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/page@2.0.6/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/typography@2.1.2/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/icon@2.1.0/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/button@2.2.0/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/asset@2.0.5/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/sidenav@2.0.5/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/card@2.0.6/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/textfield@2.0.6/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/search@2.0.6/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/menu@2.1.5/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/tabs@2.1.5/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/popover@2.0.6/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/circleloader@2.0.5/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/toggle@2.1.0/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/link@2.0.6/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/rule@2.0.6/dist/index-vars.css">
+
+  <script type="text/javascript" src="scripts/typekit.min.js"></script>
+  <script async type="text/javascript" src="https://unpkg.com/@adobe/focus-ring-polyfill@0.1.5/index.js"></script>
+
+<!--  <link rel="stylesheet" href="https://unpkg.com/@adobe/coral-spectrum@4.5.7/dist/css/coral.min.css">-->
+<!--  <script src="https://unpkg.com/@adobe/coral-spectrum@4.5.7/dist/js/coral.min.js" data-coral-icons-external="js"></script>-->
 
   <style>
     html, body {
       height: 100%;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
-    }
-
-    body {
-      opacity: 0;
-      transition: opacity ease-in-out 300ms;
-    }
-
-    body.is-ready {
-      opacity: 1;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -35,7 +58,7 @@
     }
 
     #main {
-      width: calc(100% - 256px);
+      width: calc(100% - 268px);
       height: 100%;
       position: absolute;
       top: 0;
@@ -45,6 +68,12 @@
     }
 
     #main + .spinner {
+      z-index: 10;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -40px;
+      margin-top: -40px;
       visibility: hidden;
       pointer-events: none;
     }
@@ -69,7 +98,7 @@
 
     #sideNav {
       height: 100%;
-      width: 256px;
+      width: 268px;
       box-sizing: border-box;
       padding-left: 24px;
       overflow: scroll;
@@ -79,12 +108,8 @@
     }
 
     #menu {
-      width: 200px;
+      width: 220px;
       margin: 16px 0;
-    }
-
-    #menu a[is="coral-sidenav-item"] {
-      text-transform: capitalize;
     }
 
     .logo {
@@ -104,7 +129,7 @@
     }
 
     .logo h1 {
-      margin: 0 16px;
+      margin-left: 16px;
     }
 
     .nav-toggle-header {
@@ -118,12 +143,12 @@
       z-index: 10;
     }
 
-    .nav-toggle-header .toggle-icon {
+    #navToggleAction {
       height: 36px;
       width: 36px;
       fill: currentColor;
       color: rgb(110, 110, 110);
-      left: 4px;
+      left: 8px;
       position: absolute;
       cursor: pointer;
     }
@@ -159,6 +184,22 @@
       z-index: 5;
     }
 
+    #panels .spectrum-Button--cta {
+      margin-top: 16px;
+    }
+
+    #panels .spectrum-Heading--L {
+      padding-top: 16px;
+    }
+
+    #panels > div {
+      display: none;
+    }
+
+    #panels > div.is-selected {
+      display: block;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(256px, 256px));
@@ -166,38 +207,76 @@
       margin-top: 16px;
     }
 
-    .grid-item > a {
+    .grid-item {
+      width: 242px;
+      outline: 0;
       color: inherit;
+      text-decoration: none;
     }
 
-    .grid-item coral-card-asset {
+    .grid-item .spectrum-Card-preview {
       height: 200px;
+      flex: inherit;
+    }
+
+    .grid-item .spectrum-Card-header,
+    .grid-item .spectrum-Card-content {
+      height: auto;
+    }
+
+    .grid-item .spectrum-Card-title,
+    .grid-item .spectrum-Card-subtitle {
+      white-space: normal;
+      padding: 0;
+    }
+
+    .grid-item .spectrum-Asset-image {
+      max-width: 75%;
+      max-height: 75%;
+      object-fit: contain;
+    }
+
+    .grid-item .spectrum-Body {
+      margin-top: 16px;
     }
 
     #search {
-      margin-bottom: 24px;
-      float: left;
-      clear: both;
-      width: 208px;
+      margin-bottom: 16px;
+      width: 220px;
+      position: relative;
     }
 
-    #search input {
-      width: 100% !important;
+    #searchInput {
+      width: 100%;
     }
 
-    .search-panel {
+    #searchAutocomplete {
+      position: absolute;
+      left: 0;
+      z-index: 10;
+    }
+
+    #searchPanel {
       margin-top: 64px;
     }
 
-    .search-panel .search-result {
+    .search-details {
+      margin-top: 64px;
+    }
+
+    .search-result {
       margin: 32px 0;
     }
 
-    .search-panel .search-result-description {
+    .search-result-count {
+      padding-top: 16px;
+    }
+
+    .search-result-description {
       margin-top: 8px;
     }
 
-    .search-panel .search-empty {
+    .search-empty {
       position: absolute;
       top: 50%;
       height: 200px;
@@ -205,9 +284,10 @@
       text-align: center;
       right: 0;
       left: 0;
+      padding: 0 16px;
     }
 
-    .search-panel .search-empty-illustration {
+    .search-empty-illustration {
       width: 200px;
       height: 98px;
       margin-bottom: 24px;
@@ -220,6 +300,10 @@
       right: 16px;
       display: flex;
       justify-content: flex-end;
+    }
+
+    .header .spectrum-ToggleSwitch {
+      margin-right: 0;
     }
 
     .footer {
@@ -307,18 +391,18 @@
       }
     }
 
-    .coral--light #sideNav,
-    .coral--light .nav-toggle-header {
+    .spectrum--light #sideNav,
+    .spectrum--light .nav-toggle-header {
       background-color: rgb(245, 245, 245);
     }
 
-    .coral--dark #sideNav,
-    .coral--dark .nav-toggle-header {
+    .spectrum--dark #sideNav,
+    .spectrum--dark .nav-toggle-header {
       background-color: rgb(50, 50, 50);
     }
   </style>
 </head>
-<body>
+<body class="spectrum">
   <div id="navToggleOverlay"></div>
   <div class="nav-toggle-header" role="banner">
     <svg class="adobe-icon" viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
@@ -326,8 +410,16 @@
       <polygon points="11.1,0 0,0 0,26"></polygon>
       <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
     </svg>
-    <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
-    <button is="coral-button" variant="quietaction" icon="spectrum-css-icon-TripleGripper" id="navToggleAction" class="toggle-icon" aria-label="Show Navigation Menu"></button>
+    <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O Developers</h1>
+    <button class="spectrum-ActionButton" aria-label="Show Navigation Menu" id="navToggleAction">
+      <svg class="spectrum-Icon spectrum-Icon--sizeS" focusable="false" aria-hidden="true" aria-label="Edit">
+        <svg viewBox="0 0 10 7">
+          <path d="M9.49 6H.51a.5.5 0 1 0 0 1h8.98a.5.5 0 0 0 0-1z"></path>
+          <path
+            d="M9.49 3H.51a.5.5 0 1 0 0 1h8.98a.5.5 0 0 0 0-1zM.51 1h8.98a.5.5 0 0 0 0-1H.51a.5.5 0 0 0 0 1z"></path>
+        </svg>
+      </svg>
+    </button>
   </div>
 
   <div id="sideNav" role="navigation" aria-label="Navigation Menu">
@@ -338,125 +430,209 @@
         <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
       </svg>
 
-      <h1 class="coral-Heading--S">Adobe I/O CodeLabs</h1>
+      <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O Developers</h1>
     </div>
 
-    <label id="search-label" class="u-coral-screenReaderOnly">Search</label>
-    <coral-search id="search" placeholder="Search" role="search" labelledBy="search-label" autocomplete="off"></coral-search>
-    <coral-popover placement="bottom" smart id="searchAutocomplete" focusonshow="off" returnfocus="off">
-      <coral-anchorlist id="searchAutocompleteList"></coral-anchorlist>
-    </coral-popover>
+    <form class="spectrum-Search" id="search">
+      <input id="searchInput" type="search" placeholder="Search" autocomplete="off" class="spectrum-Textfield spectrum-Search-input">
+      <svg class="spectrum-Icon spectrum-UIIcon-Magnifier spectrum-Search-icon" focusable="false" aria-hidden="true">
+        <path d="M15.77 14.71l-4.534-4.535a6.014 6.014 0 1 0-1.06 1.06l4.533 4.535a.75.75 0 1 0 1.061-1.06zM6.5 11A4.5 4.5 0 1 1 11 6.5 4.505 4.505 0 0 1 6.5 11z"></path>
+      </svg>
+      <button type="reset" class="spectrum-ClearButton">
+        <svg class="spectrum-Icon spectrum-UIIcon-CrossSmall" focusable="false" aria-hidden="true">
+          <path d="M7.317 6.433L4.884 4l2.433-2.433a.625.625 0 1 0-.884-.884L4 3.116 1.567.683a.625.625 0 1 0-.884.884L3.116 4 .683 6.433a.625.625 0 1 0 .884.884L4 4.884l2.433 2.433a.625.625 0 0 0 .884-.884z"></path>
+        </svg>
+      </button>
+      <div id="searchAutocomplete" class="spectrum-Popover spectrum-Popover--bottom">
+        <ul class="spectrum-Menu" role="listbox" id="searchAutocompleteList"></ul>
+      </div>
+    </form>
 
-    <nav is="coral-sidenav" id="menu">
-      <a is="coral-sidenav-item" href="#" data-type="lab">Pinned CodeLabs</a>
-      <a is="coral-sidenav-item" href="#" data-type="app">Awesome Apps</a>
-      <a is="coral-sidenav-item" href="#" data-type="doc">Featured documentation</a>
+    <nav id="menu">
+      <ul class="spectrum-SideNav">
+        <li class="spectrum-SideNav-item is-selected" data-type="lab">
+          <a class="spectrum-SideNav-itemLink" href="#">Pinned CodeLabs</a>
+        </li>
+        <li class="spectrum-SideNav-item" data-type="app">
+          <a class="spectrum-SideNav-itemLink" href="#">Awesome Apps</a>
+        </li>
+        <li class="spectrum-SideNav-item" data-type="doc">
+          <a class="spectrum-SideNav-itemLink" href="#">Featured documentation</a>
+        </li>
+      </ul>
     </nav>
   </div>
-  <main id="main">
+
+  <main id="main" class="spectrum spectrum-Typography">
     <header class="header">
-      <coral-switch id="darkSwitch">Dark mode</coral-switch>
-      <a is="coral-anchorbutton" variant="cta" href="https://github.com/AdobeDocs/adobeio-codelabs-template/generate" target="_blank">Create a CodeLab</a>
+      <div class="spectrum-ToggleSwitch">
+        <input type="checkbox" class="spectrum-ToggleSwitch-input" id="darkSwitch">
+        <span class="spectrum-ToggleSwitch-switch"></span>
+        <label class="spectrum-ToggleSwitch-label" for="darkSwitch">Dark mode</label>
+      </div>
     </header>
 
     <div class="main-wrapper">
-      <coral-panelstack id="panels">
-        <coral-panel data-type="lab">
-          <h1 class="coral-Heading--XXXL">Adobe I/O CodeLabs</h1>
-          <p class="coral-Body--L">CodeLabs provide a guided, tutorial, hands-on coding experience.</p>
+      <div id="panels">
+        <div id="labPanel" class="is-selected">
+          <h1 class="spectrum-Heading spectrum-Heading--XXXL">Start building</h1>
+          <p class="spectrum-Body spectrum-Body--L">CodeLabs provide a guided, tutorial, hands-on coding experience.</p>
 
-          <h2 class="coral-Heading--L u-coral-padding-vertical">Pinned CodeLabs <coral-wait size="S" id="labSpinner"></coral-wait></h2>
-          <hr class="coral-Divider--L">
-          <div class="grid" id="labGrid"></div>
-        </coral-panel>
+          <a role="button" href="https://github.com/AdobeDocs/adobeio-codelabs-template/generate" target="_blank" class="spectrum-Button spectrum-Button--cta">
+            <span class="spectrum-Button-label">Create a CodeLab</span>
+          </a>
 
-        <coral-panel data-type="app">
-          <h1 class="coral-Heading--XXXL">Get inspired</h1>
-          <p class="coral-Body--L">Curated list of Awesome Apps built on top of the Adobe I/O Ecosystem.</p>
+          <h2 class="spectrum-Heading spectrum-Heading--L">
+            Pinned CodeLabs
 
-          <h2 class="coral-Heading--L u-coral-padding-vertical">Awesome Apps <coral-wait size="S" id="appSpinner"></coral-wait></h2>
-          <hr class="coral-Divider--L">
-          <div class="grid" id="appGrid"></div>
-        </coral-panel>
+            <div id="labSpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
+              <div class="spectrum-CircleLoader-track"></div>
+              <div class="spectrum-CircleLoader-fills">
+                <div class="spectrum-CircleLoader-fillMask1">
+                  <div class="spectrum-CircleLoader-fillSubMask1">
+                    <div class="spectrum-CircleLoader-fill"></div>
+                  </div>
+                </div>
+                <div class="spectrum-CircleLoader-fillMask2">
+                  <div class="spectrum-CircleLoader-fillSubMask2">
+                    <div class="spectrum-CircleLoader-fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </h2>
+          <hr class="spectrum-Rule spectrum-Rule--large">
+          <div class="grid" role="grid" id="labGrid"></div>
+        </div>
 
-        <coral-panel data-type="doc">
-          <h1 class="coral-Heading--XXXL">Access knowledge</h1>
-          <p class="coral-Body--L">Featured documentation to help you get started on any project.</p>
+        <div id="appPanel">
+          <h1 class="spectrum-Heading spectrum-Heading--XXXL">Get inspired</h1>
+          <p class="spectrum-Body spectrum-Body--L">Curated list of Awesome Apps built on top of the Adobe I/O Ecosystem.</p>
 
-          <h2 class="coral-Heading--L u-coral-padding-vertical">Featured documentation <coral-wait size="S" id="docSpinner"></coral-wait></h2>
-          <hr class="coral-Divider--L">
-          <div class="grid" id="docGrid"></div>
-        </coral-panel>
+          <h2 class="spectrum-Heading spectrum-Heading--L">
+            Awesome Apps
+            <div id="appSpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
+              <div class="spectrum-CircleLoader-track"></div>
+              <div class="spectrum-CircleLoader-fills">
+                <div class="spectrum-CircleLoader-fillMask1">
+                  <div class="spectrum-CircleLoader-fillSubMask1">
+                    <div class="spectrum-CircleLoader-fill"></div>
+                  </div>
+                </div>
+                <div class="spectrum-CircleLoader-fillMask2">
+                  <div class="spectrum-CircleLoader-fillSubMask2">
+                    <div class="spectrum-CircleLoader-fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </h2>
+          <hr class="spectrum-Rule spectrum-Rule--large">
+          <div class="grid" role="grid" id="appGrid"></div>
+        </div>
 
-        <coral-panel data-type="search" class="search-panel">
-          <coral-tabview id="searchTabView">
-            <coral-tablist>
-              <coral-tab data-type="lab">CodeLabs</coral-tab>
-              <coral-tab data-type="app">Apps</coral-tab>
-              <coral-tab data-type="doc">Docs</coral-tab>
-              <coral-tab>All</coral-tab>
-            </coral-tablist>
-            <coral-panelstack>
-              <coral-panel>
-                <div class="search-empty u-coral-padding-horizontal"></div>
-                <p class="coral-Body--M u-coral-padding-vertical"></p>
-                <div class="grid"></div>
-                <div class="coral-Body--M search-result"></div>
-              </coral-panel>
-              <coral-panel>
-                <div class="search-empty u-coral-padding-horizontal"></div>
-                <p class="coral-Body--M u-coral-padding-vertical"></p>
-                <div class="grid"></div>
-                <div class="coral-Body--M search-result"></div>
-              </coral-panel>
-              <coral-panel>
-                <div class="search-empty u-coral-padding-horizontal"></div>
-                <p class="coral-Body--M u-coral-padding-vertical"></p>
-                <div class="grid"></div>
-                <div class="coral-Body--M search-result"></div>
-              </coral-panel>
-              <coral-panel>
-                <div class="search-empty u-coral-padding-horizontal"></div>
-                <p class="coral-Body--M u-coral-padding-vertical"></p>
-                <div class="grid"></div>
-                <div class="coral-Body--M search-result"></div>
-              </coral-panel>
-            </coral-panelstack>
-          </coral-tabview>
-        </coral-panel>
-      </coral-panelstack>
+        <div id="docPanel">
+          <h1 class="spectrum-Heading spectrum-Heading--XXXL">Access knowledge</h1>
+          <p class="spectrum-Body spectrum-Body--L">Featured documentation to help you get started on any project.</p>
+
+          <h2 class="spectrum-Heading spectrum-Heading--L">
+            Featured documentation
+            <div id="docSpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
+              <div class="spectrum-CircleLoader-track"></div>
+              <div class="spectrum-CircleLoader-fills">
+                <div class="spectrum-CircleLoader-fillMask1">
+                  <div class="spectrum-CircleLoader-fillSubMask1">
+                    <div class="spectrum-CircleLoader-fill"></div>
+                  </div>
+                </div>
+                <div class="spectrum-CircleLoader-fillMask2">
+                  <div class="spectrum-CircleLoader-fillSubMask2">
+                    <div class="spectrum-CircleLoader-fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </h2>
+          <hr class="spectrum-Rule spectrum-Rule--large">
+          <div class="grid" role="grid" id="docGrid"></div>
+        </div>
+
+        <div id="searchPanel">
+          <div class="spectrum-Tabs spectrum-Tabs--horizontal">
+            <div class="spectrum-Tabs-item is-selected" tabindex="0" data-type="lab">
+              <label class="spectrum-Tabs-itemLabel">CodeLabs</label>
+            </div>
+            <div class="spectrum-Tabs-item" tabindex="0" data-type="app">
+              <label class="spectrum-Tabs-itemLabel">Apps</label>
+            </div>
+            <div class="spectrum-Tabs-item" tabindex="0" data-type="doc">
+              <label class="spectrum-Tabs-itemLabel">Docs</label>
+            </div>
+            <div class="spectrum-Tabs-item" tabindex="0" data-type>
+              <label class="spectrum-Tabs-itemLabel">All</label>
+            </div>
+            <div id="searchTabsIndicator" class="spectrum-Tabs-selectionIndicator" style="width: 56px; transform: translate(8px, 0);"></div>
+          </div>
+
+          <div id="searchResults"></div>
+        </div>
+      </div>
     </div>
 
     <footer class="footer">
-      <hr class="footer-rule coral-Divider--S" />
+      <hr class="footer-rule spectrum-Rule spectrum-Rule--medium" />
       <ul>
         <li>
           © Adobe. All rights reserved.
         </li>
         <li>
-          <a class="coral-Link--quiet" href="https://www.adobe.com/privacy.html">Privacy (Updated)</a>
+          <a class="spectrum-Link spectrum-Link--quiet" href="https://www.adobe.com/privacy.html">Privacy (Updated)</a>
         </li>
         <li>
-          <a class="coral-Link--quiet" href="https://www.adobe.com/legal/terms.html">Terms of use</a>
+          <a class="spectrum-Link spectrum-Link--quiet" href="https://www.adobe.com/legal/terms.html">Terms of use</a>
         </li>
         <li>
-          <a class="coral-Link--quiet" href="https://www.adobe.com/privacy/cookies.html">Cookies</a>
+          <a class="spectrum-Link spectrum-Link--quiet" href="https://www.adobe.com/privacy/cookies.html">Cookies</a>
         </li>
         <li>
-          <a class="coral-Link--quiet" href="https://www.adobe.com/privacy/ca-rights.html">Do not sell my personal information</a>
+          <a class="spectrum-Link spectrum-Link--quiet" href="https://www.adobe.com/privacy/ca-rights.html">Do not sell my personal information</a>
         </li>
       </ul>
     </footer>
   </main>
-  <coral-wait centered class="spinner" size="L"></coral-wait>
+
+  <div class="spinner spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--large">
+    <div class="spectrum-CircleLoader-track"></div>
+    <div class="spectrum-CircleLoader-fills">
+      <div class="spectrum-CircleLoader-fillMask1">
+        <div class="spectrum-CircleLoader-fillSubMask1">
+          <div class="spectrum-CircleLoader-fill"></div>
+        </div>
+      </div>
+      <div class="spectrum-CircleLoader-fillMask2">
+        <div class="spectrum-CircleLoader-fillSubMask2">
+          <div class="spectrum-CircleLoader-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
     (() => {
       const ENV = new URLSearchParams(location.search).get('env') === 'stage' ? 'demo' : 'prod';
 
-      document.body.classList.toggle('coral--large', window.innerWidth < 768);
+      let isLarge = window.innerWidth < 768;
+      const toggleLarge = () => {
+        document.body.classList.toggle('spectrum--large', isLarge);
+        document.body.classList.toggle('spectrum--medium', !isLarge);
+      };
+
+      toggleLarge();
+
       window.addEventListener('resize', () => {
-        document.body.classList.toggle('coral--large', window.innerWidth < 768);
+        isLarge = window.innerWidth < 768;
+
+        toggleLarge();
       });
 
       let storage;
@@ -469,10 +645,10 @@
 
       let isDark;
       const toggleDarkMode = () => {
-        document.body.classList.toggle('coral--dark', isDark);
-        document.body.classList.toggle('coral--light', !isDark);
-        main.classList.toggle('coral--darkest', isDark);
-        main.classList.toggle('coral--lightest', !isDark);
+        document.body.classList.toggle('spectrum--dark', isDark);
+        document.body.classList.toggle('spectrum--light', !isDark);
+        main.classList.toggle('spectrum--darkest', isDark);
+        main.classList.toggle('spectrum--lightest', !isDark);
       };
 
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -490,32 +666,25 @@
       const renderCard = (item) => {
         const DEFAULT_THUMBNAIL = 'https://avatars0.githubusercontent.com/u/12461336?s=200&v=4';
 
-        const card = document.createElement('div');
-        card.classList.add('grid-item');
-        card.innerHTML = `
-          <a href="${item.url || item.repo}" target="_blank">
-            <coral-card fixedwidth variant="quiet">
-            <coral-card-asset>
-            <img alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}"/>
-            </coral-card-asset>
-            <coral-card-content>
-            <coral-card-context>${item.author ? `${item.author} -` : ''} ${item.published} ${item.duration ? `- ${item.duration} min` : ''}</coral-card-context>
-              <coral-card-title><strong>${item.title}</strong></coral-card-title>
-              <coral-card-description>${item.description}
-                ${item.keywords && item.keywords.length ? `
-                  <p>
-                    <coral-taglist readonly>
-                      ${item.keywords.map(keyword => `<coral-tag>${keyword}</coral-tag>`).join('')}
-                    </coral-taglist>
-                  </p>
-                ` : ''}
-              </coral-card-description>
-            </coral-card-content>
-          </coral-card>
-        </a>
-        `;
-
-        return card;
+        return `
+          <a class="grid-item" href="${item.url || item.repo}" target="_blank">
+            <div class="spectrum-Card spectrum-Card--quiet" role="rowheader" tabindex="0">
+              <div class="spectrum-Card-preview">
+                <div class="spectrum-Asset">
+                  <img class="spectrum-Asset-image" alt="" src="${item.thumbnail || DEFAULT_THUMBNAIL}">
+                </div>
+              </div>
+              <div class="spectrum-Card-body">
+                <div class="spectrum-Card-header">
+                  <div class="spectrum-Card-title"><strong>${item.title}</strong></div>
+                </div>
+                <div class="spectrum-Card-content">
+                  <div class="spectrum-Card-subtitle">${item.author ? `${item.author} -` : ''} ${item.published} ${item.duration ? `- ${item.duration} min` : ''}</div>
+                </div>
+                <p class="spectrum-Body spectrum-Body--S">${item.description}</p>
+              </div>
+            </div>
+          </a>`;
       };
 
       // Navigation
@@ -538,74 +707,75 @@
       navToggleAction.addEventListener('click', toggleSideNav);
       navToggleOverlay.addEventListener('click', toggleSideNav);
 
-      document.body.classList.add('is-ready');
-
       // Init navigation
       (async () => {
         if (!storage.index) {
-          const INDEX_ACTION = `https://adobeioruntime.net/api/v1/web/aioe-${ENV}/aio-codelabs-0.0.1/index`;
+          const INDEX_ACTION = `https://adobeioruntime.net/api/v1/web/aioe-${ENV}/aio-developers-0.0.1/index`;
           const find = await fetch(INDEX_ACTION);
           // Store the index locally for autocomplete
           storage.index = await find.text();
         }
 
-        menu.on('coral-sidenav:change', async () => {
-          if (!storage.index || !menu.selectedItem) {
-            return;
-          }
-          const index = JSON.parse(storage.index);
-          const selected = menu.selectedItem;
-          const type = selected.dataset.type;
-          const panel = panels.items.getAll().find(item => item.dataset.type === type);
+        menu.addEventListener('click', async (event) => {
+          if (event.target.tagName === 'A') {
+            event.preventDefault();
 
-          panel.selected = true;
-
-          closeSideNav();
-
-          const grid = document.getElementById(`${type}Grid`);
-          const spinner = document.getElementById(`${type}Spinner`);
-
-          // Display pinned repos
-          if (type && grid && grid.innerHTML === '') {
-            const items = index.filter(item => item.type === type && item.isPinned);
-
-            for (const item of items) {
-              grid.appendChild(renderCard(item));
+            if (!storage.index) {
+              return;
             }
-            spinner.remove();
+
+            let selectedMenu = menu.querySelector('.is-selected');
+            selectedMenu && selectedMenu.classList.remove('is-selected');
+            selectedMenu = event.target.parentElement;
+            selectedMenu.classList.add('is-selected');
+
+            const index = JSON.parse(storage.index);
+            const type = selectedMenu.dataset.type;
+
+            let selectedPanel = panels.querySelector('.is-selected');
+            selectedPanel && selectedPanel.classList.remove('is-selected');
+
+            selectedPanel = document.getElementById(`${type}Panel`);
+            selectedPanel.classList.add('is-selected');
+
+            closeSideNav();
+
+            const grid = document.getElementById(`${type}Grid`);
+            const spinner = document.getElementById(`${type}Spinner`);
+
+            // Display pinned repos
+            if (type && grid && grid.innerHTML === '') {
+              const items = index.filter(item => item.type === type && item.isPinned);
+
+              grid.insertAdjacentHTML('beforeend', items.map(item => renderCard(item)).join(''));
+
+              spinner.remove();
+            }
           }
         });
 
         // Pinned repos
-        menu.items.first().selected = true;
+        menu.querySelector('.is-selected a').click();
       })();
 
       // Init Search
       (() => {
-        const SEARCH_ACTION = `https://adobeioruntime.net/api/v1/web/aioe-${ENV}/aio-codelabs-0.0.1/search`;
+        const SEARCH_ACTION = `https://adobeioruntime.net/api/v1/web/aioe-${ENV}/aio-developers-0.0.1/search`;
 
-        const closeAutocomplete = () => {
-          searchAutocomplete.target = null;
-          searchAutocomplete.open = false;
-        };
-
-        search._labellableElement.autocomplete = 'off';
-
-        search.on('coral-search:input', () => {
+        searchInput.addEventListener('input', () => {
           if (!storage.index) {
             return;
           }
 
           const index = JSON.parse(storage.index);
 
-          if (search.value) {
+          if (searchInput.value) {
             const max = window.innerWidth < 768 ? 3 : 10;
             const results = [];
-            searchAutocomplete.style.width = `${search.offsetWidth}px`;
-            searchAutocompleteList.items.clear();
+            searchAutocompleteList.innerHTML = '';
 
             index.some((item) => {
-              const query = search.value.toLowerCase();
+              const query = searchInput.value.toLowerCase();
               const title = item.title.toLowerCase();
               const description = item.description.toLowerCase();
 
@@ -615,128 +785,131 @@
             });
 
             if (results.length) {
+              let html = '';
               results.some((item, i) => {
                 if (i === max) {
                   return true;
                 }
 
-                searchAutocompleteList.items.add({
-                  content: {
-                    textContent: item.title
-                  },
-                  href: item.url || item.repo,
-                  target: '_blank'
-                });
+                html += `
+                  <a href="${item.url || item.repo}" target="_blank" class="spectrum-Menu-item" role="option" tabindex="0">
+                    <span class="spectrum-Menu-itemLabel">${item.title}</span>
+                  </a>
+                `;
               });
 
-              searchAutocomplete.target = search;
-              searchAutocomplete.open = true;
+              searchAutocompleteList.insertAdjacentHTML('beforeend', html);
+              searchAutocomplete.classList.add('is-open');
             }
             else {
-              closeAutocomplete();
+              searchAutocomplete.classList.remove('is-open');
             }
           }
           else {
-            closeAutocomplete();
+            searchAutocomplete.classList.remove('is-open');
           }
         });
 
-        search.on('keydown', (e) => {
-          if (e.key === 'ArrowDown' && searchAutocompleteList.items.length) {
-            searchAutocompleteList.items.first().focus();
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown' && searchAutocompleteList.childElementCount) {
+            searchAutocompleteList.getElementsByTagName('a')[0].focus();
           }
         });
 
         // Trigger search on tab change
-        searchTabView.on('coral-tabview:change', () => {
-          search.trigger('coral-search:submit');
+        searchPanel.addEventListener('click', (event) => {
+          if (event.target.parentElement.hasAttribute('data-type')) {
+            let selectedPanel = searchPanel.querySelector('.is-selected');
+            selectedPanel && selectedPanel.classList.remove('is-selected');
+
+            selectedPanel = event.target.parentElement;
+            selectedPanel.classList.add('is-selected');
+
+            searchTabsIndicator.style.transform = `translate(${selectedPanel.offsetLeft}px, 0px)`;
+            searchTabsIndicator.style.width = `${selectedPanel.offsetWidth}px`;
+
+            search.dispatchEvent(new Event('submit'));
+          }
         });
 
-        search.on('coral-search:submit', async () => {
-          if (!search.value || !storage.index) {
+        search.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          if (!searchInput.value || !storage.index) {
             return;
           }
 
           // Close if opened
-          closeAutocomplete();
+          searchAutocomplete.classList.remove('is-open');
 
           main.classList.add('is-loading');
 
           // Deselect
-          if (menu.selectedItem) {
-            menu.selectedItem.selected = false;
-          }
+          const selectedMenu = menu.querySelector('.is-selected');
+          selectedMenu && selectedMenu.classList.remove('is-selected');
+
+          let selectedPanel = panels.querySelector('.is-selected');
+          selectedPanel && selectedPanel.classList.remove('is-selected');
 
           // Show search panel
-          panels.items.last().selected = true;
+          searchPanel.classList.add('is-selected');
 
           closeSideNav();
 
           const index = JSON.parse(storage.index) || {};
-          const selectedTab = searchTabView.tabList.selectedItem;
-          const panel = searchTabView.panelStack.items.getAll()[searchTabView.tabList.items.getAll().indexOf(selectedTab)];
-          const type = selectedTab.dataset.type ? `&type=${selectedTab.dataset.type}` : '';
+          selectedPanel = searchPanel.querySelector('.is-selected');
+          const type = selectedPanel.dataset.type ? `&type=${selectedPanel.dataset.type}` : '';
 
-          const empty = panel.content.firstElementChild;
-          const results = empty.nextElementSibling;
-          const grid = results.nextElementSibling;
-          const details = grid.nextElementSibling;
-
-          const find = await fetch(`${SEARCH_ACTION}?q=${search.value}${type}`);
+          const find = await fetch(`${SEARCH_ACTION}?q=${searchInput.value}${type}`);
           const {res} = await find.json();
 
           if (res.count === 0) {
-            empty.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 90" class="search-empty-illustration">
-                  <g>
-                      <g>
-                          <path d="M37.5,69A24.54,24.54,0,1,0,17,57.92l0,0L1.46,73.52A5,5,0,0,0,5,82.05H5a5,5,0,0,0,3.54-1.47L24.06,65l0,0A24.33,24.33,0,0,0,37.5,69Zm0-46A21.5,21.5,0,1,1,16,44.5,21.52,21.52,0,0,1,37.5,23ZM6.41,78.46A2,2,0,0,1,5,79.05H5a2,2,0,0,1-1.42-3.42L18.83,60.34a25.21,25.21,0,0,0,2.83,2.83Z"></path>
-                          <path d="M28.67,53.33a1.51,1.51,0,0,0,1.06.44,1.49,1.49,0,0,0,1.06-.44l6.71-6.71,6.71,6.71a1.5,1.5,0,0,0,2.12,0,1.49,1.49,0,0,0,0-2.12L39.62,44.5l6.71-6.71a1.49,1.49,0,0,0,0-2.12,1.51,1.51,0,0,0-2.12,0L37.5,42.38l-6.71-6.71a1.5,1.5,0,0,0-2.12,2.12l6.71,6.71-6.71,6.71A1.51,1.51,0,0,0,28.67,53.33Z"></path>
-                          <path d="M102.5,31a1.5,1.5,0,0,0-1.5,1.5V86.17a.83.83,0,0,1-.83.83H38.83a.83.83,0,0,1-.83-.83V73.5a1.5,1.5,0,0,0-3,0V86.17A3.84,3.84,0,0,0,38.83,90h61.34A3.84,3.84,0,0,0,104,86.17V32.5A1.5,1.5,0,0,0,102.5,31Z"></path>
-                          <path d="M37.5,17A1.5,1.5,0,0,0,39,15.5V3.83A.83.83,0,0,1,39.83,3H75V26.5A1.5,1.5,0,0,0,76.5,28h25.55a1.5,1.5,0,0,0,1-2.57L77.55.43a1.43,1.43,0,0,0-.49-.32A1.41,1.41,0,0,0,76.52,0H39.83A3.84,3.84,0,0,0,36,3.83V15.5A1.5,1.5,0,0,0,37.5,17ZM78,5.07,98.37,25H78Z"></path>
-                      </g>
-                  </g>
-              </svg>
-              <h3 class="coral-Heading--light coral-Heading--L">
-                Sorry, we couldn't find any results for <strong>${search.value}</strong>
-              </h3>
-              <p class="coral-Body--S">Make sure all the words are spelled correctly or try to refine your keywords.</p>
+            searchResults.innerHTML = `
+              <div class="search-empty">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 90" class="search-empty-illustration">
+                    <g>
+                        <g>
+                            <path d="M37.5,69A24.54,24.54,0,1,0,17,57.92l0,0L1.46,73.52A5,5,0,0,0,5,82.05H5a5,5,0,0,0,3.54-1.47L24.06,65l0,0A24.33,24.33,0,0,0,37.5,69Zm0-46A21.5,21.5,0,1,1,16,44.5,21.52,21.52,0,0,1,37.5,23ZM6.41,78.46A2,2,0,0,1,5,79.05H5a2,2,0,0,1-1.42-3.42L18.83,60.34a25.21,25.21,0,0,0,2.83,2.83Z"></path>
+                            <path d="M28.67,53.33a1.51,1.51,0,0,0,1.06.44,1.49,1.49,0,0,0,1.06-.44l6.71-6.71,6.71,6.71a1.5,1.5,0,0,0,2.12,0,1.49,1.49,0,0,0,0-2.12L39.62,44.5l6.71-6.71a1.49,1.49,0,0,0,0-2.12,1.51,1.51,0,0,0-2.12,0L37.5,42.38l-6.71-6.71a1.5,1.5,0,0,0-2.12,2.12l6.71,6.71-6.71,6.71A1.51,1.51,0,0,0,28.67,53.33Z"></path>
+                            <path d="M102.5,31a1.5,1.5,0,0,0-1.5,1.5V86.17a.83.83,0,0,1-.83.83H38.83a.83.83,0,0,1-.83-.83V73.5a1.5,1.5,0,0,0-3,0V86.17A3.84,3.84,0,0,0,38.83,90h61.34A3.84,3.84,0,0,0,104,86.17V32.5A1.5,1.5,0,0,0,102.5,31Z"></path>
+                            <path d="M37.5,17A1.5,1.5,0,0,0,39,15.5V3.83A.83.83,0,0,1,39.83,3H75V26.5A1.5,1.5,0,0,0,76.5,28h25.55a1.5,1.5,0,0,0,1-2.57L77.55.43a1.43,1.43,0,0,0-.49-.32A1.41,1.41,0,0,0,76.52,0H39.83A3.84,3.84,0,0,0,36,3.83V15.5A1.5,1.5,0,0,0,37.5,17ZM78,5.07,98.37,25H78Z"></path>
+                        </g>
+                    </g>
+                </svg>
+                <h3 class="spectrum-Heading spectrum-Heading--light spectrum-Heading--L">
+                  Sorry, we couldn't find any results for <strong>${searchInput.value}</strong>
+                </h3>
+                <p class="spectrum-Body spectrum-Body--S">Make sure all the words are spelled correctly or try to refine your keywords.</p>
+              </div>
             `;
-
-            empty.hidden = false;
-            results.hidden = true;
-            grid.hidden = true;
-            details.hidden = true;
           }
           else {
-            results.innerHTML = `
-              ${res.count} search results for <strong>${search.value}</strong> in ${selectedTab.label.textContent}
-            `;
-
-            // Display search results
-            grid.innerHTML = '';
-            details.innerHTML = '';
+            let details = '';
+            let grid = '';
 
             for (const resItem of res.items) {
               const item = index.find(item => item.url === resItem.url || item.repo === resItem.url);
 
               if (item) {
-                grid.appendChild(renderCard(item));
+                grid += renderCard(item);
               }
 
-              details.innerHTML += `
-                <div class="coral-Body--M search-result">
-                  <div><a target="_blank" href="${resItem.url}" class="coral-Link--quiet coral-Heading--M">${resItem.title}</a></div>
-                  ${resItem.description ? `<div class="coral-Body--S search-result-description">${resItem.description}</div>` : ''}
-                  ${resItem.files.map(file => `<div><a target="_blank" class="coral-Link" href="${file.url}">${file.title}</a></div>`).join('')}
+              details += `
+                <div class="spectrum-Body spectrum-Body--M search-result">
+                  <div><a target="_blank" href="${resItem.url}" class="spectrum-Link spectrum-Link--quiet spectrum-Heading spectrum-Heading--M">${resItem.title}</a></div>
+                  ${resItem.description ? `<div class="spectrum-Body spectrum-Body--S search-result-description">${resItem.description}</div>` : ''}
+                  ${resItem.files.map(file => `<div><a target="_blank" class="spectrum-Link" href="${file.url}">${file.title}</a></div>`).join('')}
                 </div>
               `;
             }
 
-            empty.hidden = true;
-            results.hidden = false;
-            grid.hidden = false;
-            details.hidden = false;
+            searchResults.innerHTML = `
+              <p class="spectrum-Body spectrum-Body--M search-result-count">
+                ${res.count} search results for <strong>${searchInput.value}</strong> in ${selectedPanel.textContent.trim()}
+              </p>
+              <div role="grid" class="grid">${grid}</div>
+              <div class="search-details">${details}
+            `;
           }
 
           main.classList.remove('is-loading');

@@ -1,5 +1,5 @@
 {
-  "name": "aio-codelabs",
+  "name": "aio-developers",
   "version": "0.0.1",
   "dependencies": {
     "@adobe/aio-sdk": "^1.1.0",

@@ -4,11 +4,6 @@
     "published": "Jan 19, 2020",
     "title": "Project Firefly by Adobe",
     "description": "This documentation provides an overview of Project Firefly as well as guides, reference documentation, and tools to help you begin developing your own custom applications",
-    "keywords": [
-      "Runtime",
-      "Events",
-      "Spectrum"
-    ],
     "isPinned": true,
     "type": "doc"
   },
@@ -96,9 +91,6 @@
     "thumbnail": "https://avatars0.githubusercontent.com/u/5420974?s=200&v=4",
     "title": "ACS AEM Commons - Adobe I/O APIs",
     "description": "Enables to make Adobe I/O api-calls in AEM whereby all the plumbing is done for you.",
-    "keywords": [
-      "AEM"
-    ],
     "isPinned": true,
     "type": "app"
   },
@@ -109,9 +101,6 @@
     "thumbnail": "https://helpx.adobe.com/content/dam/help/mnemonics/experience_cloud.svg",
     "title": "Adobe Cloud Manager I/O Runtime Deployer",
     "description": "This project contains actions for Adobe I/O Runtime which allow for other Runtime actions to be deployed in coordination with a CI/CD pipeline executed by Adobe Cloud Manager. While these actions are fully functional, they are intended primarily for use as a reference point for users of Cloud Manager and I/O Runtime as a basis for their own actions.",
-    "keywords": [
-      "AEM"
-    ],
     "isPinned": true,
     "type": "app"
   },
@@ -122,9 +111,6 @@
     "thumbnail": "https://t3.ftcdn.net/jpg/00/33/32/00/240_F_33320026_58KLfKN9rUj0KVMxvQ9RV86nVHm7ux2q.jpg",
     "title": "CNA Barcode Generator",
     "description": "A Barcode Generator built as a Cloud Native App (CNA)",
-    "keywords": [
-      "CNA"
-    ],
     "isPinned": true,
     "type": "app"
   }

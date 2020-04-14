@@ -9,5 +9,5 @@ Provides guided hands-on coding experiences, a curated list of awesome apps buil
 
 Follow these steps to contribute: 
 * Create a codelab using the template available at https://github.com/AdobeDocs/adobeio-codelabs-template
-* Submit a PR to add it to the index at https://github.com/AdobeDocs/adobeio-developers/blob/gh-pages/actions/index.json
+* Submit a PR to add it to the index at https://github.com/AdobeDocs/adobeio-developers/blob/master/actions/index.json
 

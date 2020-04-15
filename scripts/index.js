@@ -23,17 +23,13 @@
     storage = {};
   }
   
-  let isDark;
+  let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const toggleDarkMode = () => {
     document.body.classList.toggle('spectrum--dark', isDark);
     document.body.classList.toggle('spectrum--light', !isDark);
     main.classList.toggle('spectrum--darkest', isDark);
     main.classList.toggle('spectrum--lightest', !isDark);
   };
-  
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    isDark = true;
-  }
   
   darkSwitch.checked = isDark;
   toggleDarkMode();

@@ -19,11 +19,7 @@ module.exports = async () => {
     toggleLarge();
   });
   
-  let isDark;
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    isDark = true;
-  }
-  
+  let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   document.body.classList.add(isDark ? 'spectrum--dark' : 'spectrum--light');
   
   // Navigation

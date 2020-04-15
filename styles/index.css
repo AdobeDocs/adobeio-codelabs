@@ -69,7 +69,7 @@ html, body {
 .logo {
   display: flex;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: 32px;
   line-height: normal;
   text-decoration: none;

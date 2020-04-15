@@ -1,6 +1,6 @@
 const index = require('../index.json');
 
-async function main() {
+function main() {
   return {
     statusCode: 200,
     headers: {

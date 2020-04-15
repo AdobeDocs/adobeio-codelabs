@@ -19,3 +19,11 @@ packages:
           LOG_LEVEL: debug
         annotations:
           final: true
+      codelabs:
+        function: actions/codelabs/index.js
+        web: 'yes'
+        runtime: 'nodejs:10'
+        inputs:
+          LOG_LEVEL: debug
+        annotations:
+          final: true

@@ -9,10 +9,6 @@ module.exports = `html, body {
   display: none !important;
 }
 
-body:not(.spectrum) {
-  visibility: hidden;
-}
-
 @media (prefers-color-scheme: dark) {
   html, body {
     background-color: rgb(30, 30, 30);

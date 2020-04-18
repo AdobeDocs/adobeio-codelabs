@@ -1,6 +1,8 @@
 module.exports = () => {
   const URL = document.currentScript.src.split('?')[0];
   
+  document.body.classList.add('spectrum');
+  
   document.head.insertAdjacentHTML('beforeend', `
     <title>Adobe I/O Developers - CodeLabs</title>
   
@@ -25,7 +27,8 @@ module.exports = () => {
     <link rel="stylesheet" href="${URL}?file=index.css">
   `);
   
-  document.body.insertAdjacentHTML('beforeend', `
+  window.addEventListener('load', () => {
+    document.body.insertAdjacentHTML('beforeend', `
     <div id="navToggleOverlay"></div>
     <div class="nav-toggle-header" role="banner">
       <a href="https://adobedocs.github.io/adobeio-developers">
@@ -86,18 +89,15 @@ module.exports = () => {
     </main>
   `);
   
-  const createScript = (src, async) => {
-    const script = document.createElement('script');
-    script.async = async;
-    script.src = src;
-    document.head.appendChild(script);
-  };
+    const createScript = (src, async) => {
+      const script = document.createElement('script');
+      script.async = async;
+      script.src = src;
+      document.head.appendChild(script);
+    };
   
-  createScript(`${URL}?file=typekit.js`);
-  createScript(`${URL}?file=index.js`);
-  createScript('https://unpkg.com/@adobe/focus-ring-polyfill@0.1.5/index.js', true);
-  
-  window.addEventListener('load', () => {
-    document.body.classList.add('spectrum');
+    createScript(`${URL}?file=typekit.js`);
+    createScript(`${URL}?file=index.js`);
+    createScript('https://unpkg.com/@adobe/focus-ring-polyfill@0.1.5/index.js', true);
   });
 };

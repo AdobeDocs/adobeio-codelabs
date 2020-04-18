@@ -86,6 +86,18 @@
     "type": "lab"
   },
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-spectrum-intro",
+    "url": "https://adobeio-codelabs-spectrum-intro-adobedocs.project-helix.page",
+    "thumbnail": "https://spectrum.adobe.com/static/images/spectrum_illustration_desktop@2x.png",
+    "author": "Stephan Ringel",
+    "published": "April 17, 2020",
+    "duration": 15,
+    "title": "Spectrum Introduction",
+    "description": "This codelab is an introduction to Spectrum, Spectrum CSS and React Spectrum.",
+    "isPinned": true,
+    "type": "lab"
+  },
+  {
     "url": "https://adobe-consulting-services.github.io/acs-aem-commons/features/adobe-io-apis/index.html",
     "published": "Sep 24, 2018",
     "thumbnail": "https://avatars0.githubusercontent.com/u/5420974?s=200&v=4",

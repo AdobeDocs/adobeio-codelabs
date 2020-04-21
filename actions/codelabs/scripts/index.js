@@ -287,6 +287,9 @@ module.exports = async () => {
         <a class="spectrum-SideNav-itemLink" href="?src=${step.url}.html">${step.title}</a>
       </li>
     `;
+    
+    // Preload for browser to cache ?
+    fetch(`${step.url}.html`);
   }
   menu.firstElementChild.insertAdjacentHTML('beforeend', steps);
   

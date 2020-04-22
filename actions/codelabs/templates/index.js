@@ -3,6 +3,13 @@ module.exports = () => {
   
   document.body.classList.add('spectrum');
   
+  const isLarge = window.innerWidth < 768;
+  document.body.classList.toggle('spectrum--large', isLarge);
+  document.body.classList.toggle('spectrum--medium', !isLarge);
+  
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.body.classList.add(isDark ? 'spectrum--dark' : 'spectrum--light');
+  
   document.head.insertAdjacentHTML('beforeend', `
     <title>Adobe I/O Developers - CodeLabs</title>
   

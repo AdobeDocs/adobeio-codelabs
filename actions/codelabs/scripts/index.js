@@ -11,8 +11,6 @@ module.exports = async () => {
     }
   };
   
-  toggleLarge();
-  
   window.addEventListener('resize', () => {
     isLarge = window.innerWidth < 768;
     
@@ -20,7 +18,6 @@ module.exports = async () => {
   });
   
   let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.body.classList.add(isDark ? 'spectrum--dark' : 'spectrum--light');
   
   // Navigation
   const toggleSideNav = () => {
@@ -194,7 +191,7 @@ module.exports = async () => {
         <a role="button" href="${index.repository}/issues/new?body=Issue%20in%20${src.replace('.html', '.md')}" target="_blank" class="spectrum-Button spectrum-Button--primary">
           <span class="spectrum-Button-label">Log an issue</span>
         </a>
-        <a role="button" href="${index.repository}/blob/master${src.replace('.html', '.md')}" target="_blank" class="spectrum-Button spectrum-Button--cta">
+        <a role="button" href="${index.repository}/edit/master${src.replace('.html', '.md')}" target="_blank" class="spectrum-Button spectrum-Button--cta">
           <span class="spectrum-Button-label">Edit in Github</span>
         </a>
       </div>

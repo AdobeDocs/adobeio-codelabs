@@ -71,7 +71,7 @@ module.exports = () => {
       <nav id="menu">
         <ul class="spectrum-SideNav">
           <li class="spectrum-SideNav-item">
-            <a class="spectrum-SideNav-itemLink" href="?src=/README.html">Summary</a>
+            <a class="spectrum-SideNav-itemLink" href="?src=/README.html">Introduction</a>
           </li>
         </ul>
       </nav>

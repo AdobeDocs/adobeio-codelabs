@@ -1,8 +1,8 @@
-# Adobe I/O Developers
+# Adobe I/O CodeLabs
 
-https://adobedocs.github.io/adobeio-developers
+https://adobedocs.github.io/adobeio-codelabs
 
-Provides guided hands-on coding experiences, a curated list of awesome apps built on top of the Adobe I/O Ecosystem and featured documentation to help you get started on any project.
+Adobe I/O CodeLabs provide guided hands-on coding experiences to build awesome apps on top of the Adobe I/O Ecosystem.
 
 ## CodeLabs contributions
 

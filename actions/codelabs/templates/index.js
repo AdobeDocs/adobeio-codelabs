@@ -11,7 +11,7 @@ module.exports = () => {
   document.body.classList.add(isDark ? 'spectrum--dark' : 'spectrum--light');
   
   document.head.insertAdjacentHTML('beforeend', `
-    <title>Adobe I/O Developers - CodeLabs</title>
+    <title>Adobe I/O CodeLabs</title>
   
     <link rel="icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
@@ -38,13 +38,13 @@ module.exports = () => {
     document.body.insertAdjacentHTML('beforeend', `
     <div id="navToggleOverlay"></div>
     <div class="nav-toggle-header" role="banner">
-      <a href="https://adobedocs.github.io/adobeio-developers">
+      <a href="https://adobedocs.github.io/adobeio-codelabs">
         <svg class="adobe-icon" viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
           <polygon points="19,0 30,0 30,26"></polygon>
           <polygon points="11.1,0 0,0 0,26"></polygon>
           <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
         </svg>
-        <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O Developers</h1>
+        <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O CodeLabs</h1>
       </a>
       <button class="spectrum-ActionButton" aria-label="Show Navigation Menu" id="navToggleAction">
         <svg class="spectrum-Icon spectrum-Icon--sizeS" focusable="false" aria-hidden="true" aria-label="Edit">
@@ -58,14 +58,14 @@ module.exports = () => {
     </div>
   
     <div id="sideNav" role="navigation" aria-label="Navigation Menu">
-      <a class="logo" href="https://adobedocs.github.io/adobeio-developers">
+      <a class="logo" href="https://adobedocs.github.io/adobeio-codelabs">
         <svg viewBox="0 0 30 26" focusable="false" aria-label="Adobe" role="img">
           <polygon points="19,0 30,0 30,26"></polygon>
           <polygon points="11.1,0 0,0 0,26"></polygon>
           <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
         </svg>
   
-        <h1 class="spectrum-Heading--S">Adobe I/O Developers</h1>
+        <h1 class="spectrum-Heading--S">Adobe I/O CodeLabs</h1>
       </a>
   
       <nav id="menu">

@@ -1,91 +1,5 @@
 [
   {
-    "repo": "https://github.com/AdobeDocs/project-firefly",
-    "published": "Jan 19, 2020",
-    "title": "Project Firefly by Adobe",
-    "description": "This documentation provides an overview of Project Firefly as well as guides, reference documentation, and tools to help you begin developing your own custom applications",
-    "isPinned": true,
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/AdobeDocs/adobeio-auth",
-    "published": "March 25, 2018",
-    "title": "Adobe I/O Auth Developer Guide",
-    "description": "This guide contains all you need to know to authenticate your apps with Adobe services",
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/AdobeDocs/adobeio-console",
-    "published": "Aug 5, 2018",
-    "title": "Adobe I/O Console Developer Guide",
-    "description": "Adobe I/O Events enables building reactive, event-driven applications, based on events originating from various Adobe services",
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/AdobeDocs/adobeio-events",
-    "published": "Dec 10, 2017",
-    "title": "Adobe I/O Events Developer Guide",
-    "description": "This documentation provides an overview of Adobe I/O Runtime as well as guides, reference documentation, and tools to help you begin developing your own integrations",
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/AdobeDocs/adobeio-runtime",
-    "published": "Nov 18, 2018",
-    "title": "Adobe I/O Runtime Developer Guide",
-    "description": "This documentation provides an overview of Adobe I/O Events as well as guides, reference documentation, and tools to help you begin developing your own integrations",
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/adobe/aio-cli",
-    "published": "Jun 17, 2018",
-    "title": "Adobe I/O CLI",
-    "description": "Extensible CLI with all-batteries-included tools for building apps",
-    "isPinned": true,
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/adobe/aio-sdk",
-    "published": "Oct 20, 2019",
-    "title": "Adobe I/O SDK",
-    "description": "Module that contains all the Adobe I/O SDKs",
-    "isPinned": true,
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/adobe/aio-sdk-core",
-    "published": "Sep 22, 2019",
-    "title": "Adobe I/O Core SDK",
-    "description": "Module that contains all the Adobe I/O Core SDKs",
-    "type": "doc"
-  },
-  {
-    "url": "https://spectrum.adobe.com",
-    "published": "Dec 4, 2019",
-    "title": "Adobe Spectrum Design System",
-    "description": "Spectrum provides components and tools to help product teams work more efficiently, and to make Adobe’s applications more cohesive",
-    "isPinned": true,
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/adobe/spectrum-css",
-    "published": "Dec 4, 2019",
-    "title": "Adobe Spectrum CSS",
-    "description": "Spectrum CSS is an open-source implementation of Spectrum, Adobe’s design system. It includes components and resources to make applications more cohesive",
-    "isPinned": true,
-    "type": "doc"
-  },
-  {
-    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-howto",
-    "url": "https://adobeio-codelabs-howto-adobedocs.project-helix.page",
-    "author": "Duy Nguyen",
-    "published": "April 03, 2020",
-    "duration": 10,
-    "title": "How to Build an Adobe I/O CodeLab",
-    "description": "In this lab you will learn how to create a new codelab from the template repository, develop the content locally as well as publish it to the Adobe I/O CodeLabs website.",
-    "isPinned": true,
-    "type": "lab"
-  },
-  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-spectrum-intro",
     "url": "https://adobeio-codelabs-spectrum-intro-adobedocs.project-helix.page",
     "thumbnail": "https://spectrum.adobe.com/static/images/spectrum_illustration_desktop@2x.png",
@@ -93,37 +7,7 @@
     "published": "April 17, 2020",
     "duration": 15,
     "title": "Spectrum Introduction",
-    "description": "This codelab is an introduction to Spectrum, Spectrum CSS and React Spectrum.",
-    "isPinned": true,
-    "type": "lab"
-  },
-  {
-    "url": "https://adobe-consulting-services.github.io/acs-aem-commons/features/adobe-io-apis/index.html",
-    "published": "Sep 24, 2018",
-    "thumbnail": "https://avatars0.githubusercontent.com/u/5420974?s=200&v=4",
-    "title": "ACS AEM Commons - Adobe I/O APIs",
-    "description": "Enables to make Adobe I/O api-calls in AEM whereby all the plumbing is done for you.",
-    "isPinned": true,
-    "type": "app"
-  },
-  {
-    "repo": "https://github.com/adobe/adobe-cloudmanager-io-runtime-deployer",
-    "author": "Justin Edelson",
-    "published": "Aug 11, 2019",
-    "thumbnail": "https://helpx.adobe.com/content/dam/help/mnemonics/experience_cloud.svg",
-    "title": "Adobe Cloud Manager I/O Runtime Deployer",
-    "description": "This project contains actions for Adobe I/O Runtime which allow for other Runtime actions to be deployed in coordination with a CI/CD pipeline executed by Adobe Cloud Manager. While these actions are fully functional, they are intended primarily for use as a reference point for users of Cloud Manager and I/O Runtime as a basis for their own actions.",
-    "isPinned": true,
-    "type": "app"
-  },
-  {
-    "url": "https://s3.amazonaws.com/adobe-cna/ringel/adobeio-cna-barcode-1.0.0-beta/index.html",
-    "author": "Stephan Ringel",
-    "published": "Aug 19, 2019",
-    "thumbnail": "https://t3.ftcdn.net/jpg/00/33/32/00/240_F_33320026_58KLfKN9rUj0KVMxvQ9RV86nVHm7ux2q.jpg",
-    "title": "CNA Barcode Generator",
-    "description": "A Barcode Generator built as a Cloud Native App (CNA)",
-    "isPinned": true,
-    "type": "app"
+    "description": "This codelab is an introduction to Spectrum to build a Firefly App UI",
+    "type": "firefly"
   }
 ]

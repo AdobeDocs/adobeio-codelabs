@@ -12,7 +12,7 @@ html, body {
 }
 
 #main {
-  width: calc(100% - 268px);
+  width: calc(100% - 256px);
   height: 100%;
   position: absolute;
   top: 0;
@@ -52,7 +52,7 @@ html, body {
 
 #sideNav {
   height: 100%;
-  width: 268px;
+  width: 256px;
   box-sizing: border-box;
   padding-left: 24px;
   overflow: scroll;
@@ -62,7 +62,7 @@ html, body {
 }
 
 #menu {
-  width: 220px;
+  width: 208px;
   margin: 16px 0;
 }
 
@@ -139,11 +139,12 @@ html, body {
 }
 
 #panels .spectrum-Button--cta {
-  margin-top: 16px;
+  margin: 16px 0;
 }
 
-#panels .spectrum-Heading--L {
-  padding-top: 16px;
+#panels hr + p {
+  margin-top: 16px;
+  margin-bottom: 32px;
 }
 
 #panels > div {
@@ -196,7 +197,7 @@ html, body {
 
 #search {
   margin-bottom: 16px;
-  width: 220px;
+  width: 208px;
   position: relative;
 }
 

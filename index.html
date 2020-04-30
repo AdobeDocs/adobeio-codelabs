@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <meta name="description" content="Adobe I/O Developers provide guided hands-on coding experiences, a curated list of awesome apps built on top of the Adobe I/O Ecosystem and featured documentation to help you get started on any project">
+  <meta name="description" content="Adobe I/O CodeLabs provide guided hands-on coding experiences to build awesome apps on top of the Adobe I/O Ecosystem.">
 
-  <title>Adobe I/O Developers</title>
+  <title>Adobe I/O CodeLabs</title>
 
   <link rel="icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="https://www.adobe.com/favicon.ico" type="image/x-icon"/>
@@ -41,7 +41,6 @@
 
   <script src="scripts/typekit.min.js"></script>
   <script async src="https://unpkg.com/@adobe/focus-ring-polyfill@0.1.5/index.js"></script>
-
 </head>
 <body class="spectrum">
   <div id="navToggleOverlay"></div>
@@ -51,7 +50,7 @@
       <polygon points="11.1,0 0,0 0,26"></polygon>
       <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
     </svg>
-    <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O Developers</h1>
+    <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O CodeLabs</h1>
     <button class="spectrum-ActionButton" aria-label="Show Navigation Menu" id="navToggleAction">
       <svg class="spectrum-Icon spectrum-Icon--sizeS" focusable="false" aria-hidden="true" aria-label="Edit">
         <svg viewBox="0 0 10 7">
@@ -71,7 +70,7 @@
         <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8"></polygon>
       </svg>
 
-      <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O Developers</h1>
+      <h1 class="spectrum-Heading spectrum-Heading--S">Adobe I/O CodeLabs</h1>
     </div>
 
     <form class="spectrum-Search" id="search">
@@ -91,14 +90,8 @@
 
     <nav id="menu">
       <ul class="spectrum-SideNav">
-        <li class="spectrum-SideNav-item is-selected" data-type="lab">
-          <a class="spectrum-SideNav-itemLink" href="#">Pinned CodeLabs</a>
-        </li>
-        <li class="spectrum-SideNav-item" data-type="app">
-          <a class="spectrum-SideNav-itemLink" href="#">Awesome Apps</a>
-        </li>
-        <li class="spectrum-SideNav-item" data-type="doc">
-          <a class="spectrum-SideNav-itemLink" href="#">Featured documentation</a>
+        <li class="spectrum-SideNav-item is-selected" data-type="firefly">
+          <a class="spectrum-SideNav-itemLink" href="#">Firefly CodeLabs</a>
         </li>
       </ul>
     </nav>
@@ -115,18 +108,18 @@
 
     <div class="main-wrapper">
       <div id="panels">
-        <div id="labPanel" class="is-selected">
+        <div id="fireflyPanel" class="is-selected">
           <h1 class="spectrum-Heading spectrum-Heading--XXXL">Start building</h1>
-          <p class="spectrum-Body spectrum-Body--L">CodeLabs provide a guided, tutorial, hands-on coding experience.</p>
+          <p class="spectrum-Body spectrum-Body--XXXL">Adobe I/O CodeLabs provide guided hands-on coding experiences to build awesome apps on top of the Adobe I/O Ecosystem.</p>
 
-          <a role="button" href="https://github.com/AdobeDocs/adobeio-codelabs-template/generate" target="_blank" class="spectrum-Button spectrum-Button--cta">
+          <a role="button" href="https://adobeio-codelabs-howto-adobedocs.project-helix.page" target="_blank" class="spectrum--large spectrum-Button spectrum-Button--cta">
             <span class="spectrum-Button-label">Create a CodeLab</span>
           </a>
 
           <h2 class="spectrum-Heading spectrum-Heading--L">
-            Pinned CodeLabs
+            Firefly CodeLabs
 
-            <div id="labSpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
+            <div id="fireflySpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
               <div class="spectrum-CircleLoader-track"></div>
               <div class="spectrum-CircleLoader-fills">
                 <div class="spectrum-CircleLoader-fillMask1">
@@ -143,76 +136,18 @@
             </div>
           </h2>
           <hr class="spectrum-Rule spectrum-Rule--large">
-          <div class="grid" role="grid" id="labGrid"></div>
-        </div>
-
-        <div id="appPanel">
-          <h1 class="spectrum-Heading spectrum-Heading--XXXL">Get inspired</h1>
-          <p class="spectrum-Body spectrum-Body--L">Curated list of Awesome Apps built on top of the Adobe I/O Ecosystem.</p>
-
-          <h2 class="spectrum-Heading spectrum-Heading--L">
-            Awesome Apps
-            <div id="appSpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
-              <div class="spectrum-CircleLoader-track"></div>
-              <div class="spectrum-CircleLoader-fills">
-                <div class="spectrum-CircleLoader-fillMask1">
-                  <div class="spectrum-CircleLoader-fillSubMask1">
-                    <div class="spectrum-CircleLoader-fill"></div>
-                  </div>
-                </div>
-                <div class="spectrum-CircleLoader-fillMask2">
-                  <div class="spectrum-CircleLoader-fillSubMask2">
-                    <div class="spectrum-CircleLoader-fill"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </h2>
-          <hr class="spectrum-Rule spectrum-Rule--large">
-          <div class="grid" role="grid" id="appGrid"></div>
-        </div>
-
-        <div id="docPanel">
-          <h1 class="spectrum-Heading spectrum-Heading--XXXL">Access knowledge</h1>
-          <p class="spectrum-Body spectrum-Body--L">Featured documentation to help you get started on any project.</p>
-
-          <h2 class="spectrum-Heading spectrum-Heading--L">
-            Featured documentation
-            <div id="docSpinner" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--small">
-              <div class="spectrum-CircleLoader-track"></div>
-              <div class="spectrum-CircleLoader-fills">
-                <div class="spectrum-CircleLoader-fillMask1">
-                  <div class="spectrum-CircleLoader-fillSubMask1">
-                    <div class="spectrum-CircleLoader-fill"></div>
-                  </div>
-                </div>
-                <div class="spectrum-CircleLoader-fillMask2">
-                  <div class="spectrum-CircleLoader-fillSubMask2">
-                    <div class="spectrum-CircleLoader-fill"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </h2>
-          <hr class="spectrum-Rule spectrum-Rule--large">
-          <div class="grid" role="grid" id="docGrid"></div>
+          <p class="spectrum-Body spectrum-Body--L">
+            <a class="spectrum-Link" href="https://github.com/AdobeDocs/project-firefly" target="_blank">Project Firefly</a> is a complete framework that enables enterprise developers to build and deploy custom web applications that extend Adobe Experience Cloud solutions and run on Adobe infrastructure.
+          </p>
+          <div class="grid" role="grid" id="fireflyGrid"></div>
         </div>
 
         <div id="searchPanel">
           <div class="spectrum-Tabs spectrum-Tabs--horizontal">
-            <div class="spectrum-Tabs-item is-selected" tabindex="0" data-type="lab">
-              <label class="spectrum-Tabs-itemLabel">CodeLabs</label>
+            <div class="spectrum-Tabs-item is-selected" tabindex="0" data-type="firefly">
+              <label class="spectrum-Tabs-itemLabel">Firefly CodeLabs</label>
             </div>
-            <div class="spectrum-Tabs-item" tabindex="0" data-type="app">
-              <label class="spectrum-Tabs-itemLabel">Apps</label>
-            </div>
-            <div class="spectrum-Tabs-item" tabindex="0" data-type="doc">
-              <label class="spectrum-Tabs-itemLabel">Docs</label>
-            </div>
-            <div class="spectrum-Tabs-item" tabindex="0" data-type>
-              <label class="spectrum-Tabs-itemLabel">All</label>
-            </div>
-            <div id="searchTabsIndicator" class="spectrum-Tabs-selectionIndicator" style="width: 56px; transform: translate(8px, 0);"></div>
+            <div id="searchTabsIndicator" hidden class="spectrum-Tabs-selectionIndicator"></div>
           </div>
 
           <div id="searchResults"></div>
@@ -258,6 +193,6 @@
     </div>
   </div>
 
-  <script src="scripts/index.js"></script>
+  <script type="module" src="scripts/index.js"></script>
 </body>
 </html>

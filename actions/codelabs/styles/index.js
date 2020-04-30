@@ -17,7 +17,7 @@ module.exports = `html, body {
 
 #sideNav {
   height: 100%;
-  width: 268px;
+  width: 256px;
   box-sizing: border-box;
   padding-left: 24px;
   overflow: scroll;
@@ -27,12 +27,12 @@ module.exports = `html, body {
 }
 
 #menu {
-  width: 220px;
+  width: 208px;
   margin: 16px 0;
 }
 
 #viewer {
-  width: calc(100% - 268px);
+  width: calc(100% - 256px);
   height: 100%;
   position: absolute;
   top: 0;

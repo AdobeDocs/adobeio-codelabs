@@ -165,12 +165,6 @@ module.exports = async () => {
       <nav class="header-item">
         <ul class="spectrum-Breadcrumbs">
           <li class="spectrum-Breadcrumbs-item">
-            <a class="spectrum-Breadcrumbs-itemLink" target="_parent" href="https://adobedocs.github.io/adobeio-developers">CodeLabs</a>
-            <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightSmall spectrum-Breadcrumbs-itemSeparator" focusable="false" aria-hidden="true">
-              <path d="M5.5 4a.747.747 0 0 0-.22-.53C4.703 2.862 3.242 1.5 2.04.23A.75.75 0 1 0 .98 1.29L3.69 4 .98 6.71a.75.75 0 1 0 1.06 1.06l3.24-3.24A.747.747 0 0 0 5.5 4z"></path>
-            </svg>
-          </li>
-          <li class="spectrum-Breadcrumbs-item">
             <a class="spectrum-Breadcrumbs-itemLink" target="_parent" href="${path}?src=/README.html">${index.title}</a>
             <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightSmall spectrum-Breadcrumbs-itemSeparator" focusable="false" aria-hidden="true">
               <path d="M5.5 4a.747.747 0 0 0-.22-.53C4.703 2.862 3.242 1.5 2.04.23A.75.75 0 1 0 .98 1.29L3.69 4 .98 6.71a.75.75 0 1 0 1.06 1.06l3.24-3.24A.747.747 0 0 0 5.5 4z"></path>
@@ -254,7 +248,7 @@ module.exports = async () => {
   const index = await getIndex();
   
   // Update title
-  document.title += ` - ${index.title}`;
+  document.title = index.title;
   // todo Update description
   // todo Update author
   

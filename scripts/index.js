@@ -2,8 +2,8 @@ const ENV = new URLSearchParams(location.search).get('env') === 'stage' ? 'demo'
 
 let isLarge = window.innerWidth < 768;
 const toggleLarge = () => {
-  document.body.classList.toggle('spectrum--large', isLarge);
-  document.body.classList.toggle('spectrum--medium', !isLarge);
+  document.documentElement.classList.toggle('spectrum--large', isLarge);
+  document.documentElement.classList.toggle('spectrum--medium', !isLarge);
 };
 
 toggleLarge();
@@ -14,18 +14,18 @@ window.addEventListener('resize', () => {
   toggleLarge();
 });
 
-let storage;
-try {
-  // In case disabled
-  storage = window.sessionStorage;
-} catch (e) {
-  storage = {};
-}
+let storage = {};
+// try {
+//   // In case disabled
+//   storage = window.sessionStorage;
+// } catch (e) {
+//   storage = {};
+// }
 
 let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const toggleDarkMode = () => {
-  document.body.classList.toggle('spectrum--dark', isDark);
-  document.body.classList.toggle('spectrum--light', !isDark);
+  document.documentElement.classList.toggle('spectrum--dark', isDark);
+  document.documentElement.classList.toggle('spectrum--light', !isDark);
   main.classList.toggle('spectrum--darkest', isDark);
   main.classList.toggle('spectrum--lightest', !isDark);
 };

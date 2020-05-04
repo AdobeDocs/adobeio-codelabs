@@ -7,7 +7,18 @@
     "published": "April 17, 2020",
     "duration": 15,
     "title": "Spectrum Introduction",
-    "description": "This codelab is an introduction to Spectrum to build a Firefly App UI",
+    "description": "This codelab is an introduction to Spectrum to build a Firefly App UI.",
+    "type": "firefly"
+  },
+  {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-barcode",
+    "url": "https://adobeio-codelabs-barcode-adobedocs.project-helix.page",
+    "thumbnail": "https://t3.ftcdn.net/jpg/02/86/18/26/240_F_286182670_DsMAfMyjVddJUbES5dwvdv1pOamKz1k3.jpg",
+    "author": "Stephan Ringel",
+    "published": "May 4th, 2020",
+    "duration": 30,
+    "title": "Firefly Headless App",
+    "description": "This codelab will guide you through creating a Headless App using Project Firefly to render a barcode with dynamic data.",
     "type": "firefly"
   }
 ]

@@ -255,10 +255,6 @@ html:not(.spectrum--light):not(.spectrum--dark) {
   justify-content: flex-end;
 }
 
-.header .spectrum-ToggleSwitch {
-  margin-right: 0;
-}
-
 .footer {
   height: 64px;
   margin: 0 24px;

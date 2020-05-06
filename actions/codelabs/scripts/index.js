@@ -206,9 +206,6 @@ module.exports = async () => {
         <li>
           <a class="spectrum-Link spectrum-Link--quiet" href="https://www.adobe.com/privacy/cookies.html">Cookies</a>
         </li>
-        <li>
-          <a class="spectrum-Link spectrum-Link--quiet" href="https://www.adobe.com/privacy/ca-rights.html">Do not sell my personal information</a>
-        </li>
       </ul>
     `;
     footer.classList.add('footer');

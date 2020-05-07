@@ -312,7 +312,7 @@ module.exports = async () => {
     const isStepSelected = src === `${step.url}.html`;
     
     steps += `
-      <li data-duration="${step.duration}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
+      <li data-duration="${step.duration || ''}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
         <a class="spectrum-SideNav-itemLink" href="?src=${step.url}.html">${step.title}</a>
       </li>
     `;

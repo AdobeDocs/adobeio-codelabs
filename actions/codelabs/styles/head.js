@@ -62,7 +62,7 @@ header > nav {
   margin-right: 64px;
 }
 
-.heading-anchors {
+.side-panel {
   position: absolute;
   top: 64px;
   right: 0;
@@ -71,17 +71,17 @@ header > nav {
   width: 256px;
 }
 
-.heading-anchors h3 {
-  padding: 16px 0;
+.side-panel h3 {
+  padding-top: 32px;
 }
 
-.heading-anchors ul {
+.side-panel ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.heading-anchors li {
+.side-panel li {
   padding: 0;
   margin: 0;
 }
@@ -126,7 +126,7 @@ header > nav {
     padding-left: 24px;
   }
 
-  .heading-anchors {
+  .side-panel {
     display: none;
   }
 

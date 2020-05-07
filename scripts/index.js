@@ -241,7 +241,7 @@ navToggleOverlay.addEventListener('click', toggleSideNav);
     const type = selectedPanel.dataset.type ? `&type=${selectedPanel.dataset.type}` : '';
     
     const find = await fetch(`${SEARCH_ACTION}?q=${searchInput.value}${type}`);
-    const {res} = await find.json();
+    const res = await find.json();
     
     if (res.count === 0) {
       searchResults.innerHTML = `

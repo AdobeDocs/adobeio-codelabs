@@ -1,5 +1,8 @@
 module.exports = async () => {
-  const ENV = new URLSearchParams(location.search).get('env') === 'stage' ? '?env=stage' : '';
+  const ENV = new URLSearchParams(location.search).get('env') === 'stage' ? 'demo' : 'prod';
+  const ENV_PARAM = ENV === 'demo' ? '&env=stage' : '';
+  const ABOUT_ACTION = `https://adobeioruntime.net/api/v1/web/aioe-${ENV}/aio-codelabs-0.0.1/about`;
+  const CK = new Date().getTime();
   
   let isLarge = window.innerWidth < 768;
   const toggleLarge = () => {
@@ -31,7 +34,7 @@ module.exports = async () => {
   navToggleOverlay.addEventListener('click', toggleSideNav);
   
   const getIndex = async () => {
-    const manifest = await fetch('/manifest.json');
+    const manifest = await fetch(`/manifest.json?ck=${CK}`);
     return await manifest.json();
   };
   
@@ -48,12 +51,14 @@ module.exports = async () => {
     viewer.onload = () => {
       const src = viewer.contentWindow.location.href;
       
-      const step = Array.from(menu.getElementsByTagName('a')).find(item => `${item.href.replace('?src=/', '')}${ENV}` === src);
+      const step = Array.from(menu.getElementsByTagName('a')).find(item => `${item.href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}` === src);
       if (!step.parentElement.classList.contains('is-selected')) {
         step.parentElement.classList.add('is-selected');
       }
       
-      history.replaceState({href: step.href}, '', step.href);
+      if (location.href !== step.href) {
+        history.pushState({href: step.href}, '', step.href);
+      }
       
       const doc = viewer.contentDocument;
       
@@ -88,7 +93,9 @@ module.exports = async () => {
       viewer.hidden = false;
     };
     
-    viewer.src = `${menu.querySelector('.is-selected a').href.replace('?src=/', '')}${ENV}`;
+    // When assigning the URL with viewer.src = url, it adds a new entry to the browser's list of visited URLs to go back to
+    // Which messes up navigation
+    viewer.contentWindow.location.replace(`${menu.querySelector('.is-selected a').href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}`);
     
     requestAnimationFrame(() => {
       if (sideNav.classList.contains('is-open')) {
@@ -111,6 +118,13 @@ module.exports = async () => {
           el.classList.add(...className.split(' '));
         }
       });
+    };
+  
+    const readingTime = (text) => {
+      const wordsPerMinute = 200;
+      const noOfWords = text.split(/\s/g).length;
+      const minutes = noOfWords / wordsPerMinute;
+      return Math.ceil(minutes);
     };
     
     // Transform relative paths to absolute
@@ -151,13 +165,39 @@ module.exports = async () => {
     }
     
     main.insertAdjacentHTML('beforeend', `
-      <div class="heading-anchors">
+      <div class="side-panel">
         <h3 class="spectrum-Detail spectrum-Detail--M">On this page</h3>
         <ul>
           ${titles.map(title => `<li><a class="spectrum-Link" href="${title.url}">${title.label}</a></li>`).join('')}
         </ul>
+        <h3 class="spectrum-Detail spectrum-Detail--M">About this page</h3>
+        <ul>
+          <li>${menu.querySelector('.is-selected').dataset.duration || readingTime(main.textContent)} min read</li>
+          <li>Last update: <span id="lastUpdate"></span></li>
+          <li>Author: <a class="spectrum-Link" id="lastAuthor"></a></li>
+        </ul>
+        <h3 class="spectrum-Detail spectrum-Detail--M">Help</h3>
+        <ul>
+          <li><a href="mailto:adobeio@adobe.com" class="spectrum-Link" target="_blank">Contact us</a></li>
+          <li><a href="https://docs.adobe.com/content/help/en/contributor/contributor-guide/introduction.html" class="spectrum-Link" target="_blank">Learn more</a></li>
+        </ul>
       </div>
     `);
+    
+    const page = src.replace('.html', '.md');
+    
+    fetch(`${ABOUT_ACTION}?repository=${index.repository}&page=${page}`)
+      .then((res) => {
+        return res.json()
+      })
+      .then((commits) => {
+        const author = commits[0].commit.author;
+        doc.getElementById('lastUpdate').textContent = new Date(author.date).toLocaleDateString();
+        
+        const lastAuthor = doc.getElementById('lastAuthor');
+        lastAuthor.textContent = document.author && document.author.name || author.name;
+        lastAuthor.href = `mailto:${document.author && document.author.email || author.email}`;
+      });
     
     doc.body.className = `spectrum spectrum-Typography ${isDark ? 'spectrum--darkest' : 'spectrum--lightest'} ${isLarge ? 'spectrum--large' : 'spectrum--medium'}`;
     
@@ -182,11 +222,11 @@ module.exports = async () => {
           <span class="spectrum-ToggleSwitch-switch"></span>
           <label class="spectrum-ToggleSwitch-label" for="darkSwitch">Dark mode</label>
         </div>
-        <a role="button" href="${index.repository}/issues/new?body=Issue%20in%20${src.replace('.html', '.md')}" target="_blank" class="spectrum-Button spectrum-Button--primary">
+        <a role="button" href="${index.repository}/issues/new?body=Issue%20in%20${page}" target="_blank" class="spectrum-Button spectrum-Button--primary">
           <span class="spectrum-Button-label">Log an issue</span>
         </a>
-        <a role="button" href="${index.repository}/edit/master${src.replace('.html', '.md')}" target="_blank" class="spectrum-Button spectrum-Button--cta">
-          <span class="spectrum-Button-label">Edit in Github</span>
+        <a role="button" href="${index.repository}/edit/master${page}" target="_blank" class="spectrum-Button spectrum-Button--cta">
+          <span class="spectrum-Button-label">Edit this page</span>
         </a>
       </div>
     `;
@@ -246,8 +286,9 @@ module.exports = async () => {
   
   // Update title
   document.title = index.title;
-  // todo Update description
-  // todo Update author
+  
+  // Store author
+  document.author = index.author;
   
   // Create Navigation
   const src = getSrc();
@@ -271,13 +312,13 @@ module.exports = async () => {
     const isStepSelected = src === `${step.url}.html`;
     
     steps += `
-      <li class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" href="?src=${step.url}.html" ${isStepSelected ? 'aria-current="page"' : ''}>
+      <li data-duration="${step.duration}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
         <a class="spectrum-SideNav-itemLink" href="?src=${step.url}.html">${step.title}</a>
       </li>
     `;
     
     // Preload for browser to cache ?
-    fetch(`${step.url}.html`);
+    fetch(`${step.url}.html?ck=${CK}`);
   }
   menu.firstElementChild.insertAdjacentHTML('beforeend', steps);
   

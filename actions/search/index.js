@@ -25,7 +25,7 @@ async function main(params) {
   
     const res = await search.json();
     
-    const data = {
+    const body = {
       count: res.total_count,
       items: []
     };
@@ -36,8 +36,8 @@ async function main(params) {
         (type ? meta.type === type : true) &&
         (meta.title.toLowerCase().includes(lowerCasedQuery) || meta.description.toLowerCase().includes(lowerCasedQuery)))
       .forEach((meta) => {
-        data.count++;
-        data.items.push({
+        body.count++;
+        body.items.push({
           title: meta.title,
           url: meta.url,
           description: meta.description,
@@ -46,7 +46,7 @@ async function main(params) {
       });
 
     for (const item of res.items) {
-      const find = data.items.find(meta => meta.title === item.repository.full_name);
+      const find = body.items.find(meta => meta.title === item.repository.full_name);
       if (find) {
         find.files.push({
           title: item.path,
@@ -54,7 +54,7 @@ async function main(params) {
         });
       }
       else {
-        data.items.push({
+        body.items.push({
           title: item.repository.full_name,
           url: item.repository.html_url,
           description: item.repository.description,
@@ -71,7 +71,7 @@ async function main(params) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: {res: data}
+      body
     };
   }
   catch (e) {

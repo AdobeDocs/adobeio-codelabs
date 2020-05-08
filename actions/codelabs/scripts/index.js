@@ -42,57 +42,7 @@ module.exports = async () => {
     return new URLSearchParams(location.search).get('src');
   };
   
-  const render = async () => {
-    viewer.beforeunload = () => {
-      loading.hidden = false;
-      viewer.hidden = true;
-    };
-    
-    viewer.onload = () => {
-      const src = viewer.contentWindow.location.href;
-      
-      const step = Array.from(menu.getElementsByTagName('a')).find(item => `${item.href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}` === src);
-      if (!step.parentElement.classList.contains('is-selected')) {
-        step.parentElement.classList.add('is-selected');
-      }
-      
-      if (location.href !== step.href) {
-        history.pushState({href: step.href}, '', step.href);
-      }
-      
-      const doc = viewer.contentDocument;
-      
-      viewer.contentWindow.addEventListener('click', (event) => {
-        if (event.target.classList.contains('nav-anchor')) {
-          event.preventDefault();
-          
-          const nextStep = Array.from(menu.getElementsByTagName('a')).find(item => item.href === event.target.href);
-          if (nextStep) {
-            nextStep.click();
-          }
-        }
-      });
-      
-      viewer.contentWindow.addEventListener('change', (event) => {
-        if (event.target.id === 'darkSwitch') {
-          isDark = event.target.checked;
-          
-          document.body.classList.toggle('spectrum--dark', isDark);
-          document.body.classList.toggle('spectrum--light', !isDark);
-          
-          if (viewer.contentDocument) {
-            viewer.contentDocument.body.classList.toggle('spectrum--darkest', isDark);
-            viewer.contentDocument.body.classList.toggle('spectrum--lightest', !isDark);
-          }
-        }
-      });
-      
-      transformLab(doc);
-      
-      loading.hidden = true;
-      viewer.hidden = false;
-    };
-    
+  const render = () => {
     // When assigning the URL with viewer.src = url, it adds a new entry to the browser's list of visited URLs to go back to
     // Which messes up navigation
     viewer.contentWindow.location.replace(`${menu.querySelector('.is-selected a').href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}`);
@@ -199,8 +149,6 @@ module.exports = async () => {
         lastAuthor.href = `mailto:${document.author && document.author.email || author.email}`;
       });
     
-    doc.body.className = `spectrum spectrum-Typography ${isDark ? 'spectrum--darkest' : 'spectrum--lightest'} ${isLarge ? 'spectrum--large' : 'spectrum--medium'}`;
-    
     header.innerHTML = `
       <nav class="header-item">
         <ul class="spectrum-Breadcrumbs">
@@ -249,6 +197,8 @@ module.exports = async () => {
       </ul>
     `;
     footer.classList.add('footer');
+  
+    doc.body.className = `spectrum spectrum-Typography ${isDark ? 'spectrum--darkest' : 'spectrum--lightest'} ${isLarge ? 'spectrum--large' : 'spectrum--medium'}`;
   };
   
   window.onpopstate = (event) => {
@@ -278,7 +228,7 @@ module.exports = async () => {
       // Update the main region to give it a unique label
       main.setAttribute('aria-label', event.target.textContent.trim());
       
-      await render();
+      render();
     }
   });
   
@@ -323,5 +273,53 @@ module.exports = async () => {
     firstStep.setAttribute('aria-current', 'page');
   }
   
-  await render();
+  viewer.beforeunload = () => {
+    loading.hidden = false;
+    viewer.hidden = true;
+  };
+  
+  viewer.onload = () => {
+    const src = viewer.contentWindow.location.href;
+    
+    const step = Array.from(menu.getElementsByTagName('a')).find(item => `${item.href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}` === src);
+    if (!step.parentElement.classList.contains('is-selected')) {
+      step.parentElement.classList.add('is-selected');
+    }
+    
+    if (location.href !== step.href) {
+      history.pushState({href: step.href}, '', step.href);
+    }
+    
+    viewer.contentWindow.addEventListener('click', (event) => {
+      if (event.target.classList.contains('nav-anchor')) {
+        event.preventDefault();
+        
+        const nextStep = Array.from(menu.getElementsByTagName('a')).find(item => item.href === event.target.href);
+        if (nextStep) {
+          nextStep.click();
+        }
+      }
+    });
+    
+    viewer.contentWindow.addEventListener('change', (event) => {
+      if (event.target.id === 'darkSwitch') {
+        isDark = event.target.checked;
+        
+        document.body.classList.toggle('spectrum--dark', isDark);
+        document.body.classList.toggle('spectrum--light', !isDark);
+        
+        if (viewer.contentDocument) {
+          viewer.contentDocument.body.classList.toggle('spectrum--darkest', isDark);
+          viewer.contentDocument.body.classList.toggle('spectrum--lightest', !isDark);
+        }
+      }
+    });
+    
+    transformLab(viewer.contentDocument);
+  
+    loading.hidden = true;
+    viewer.hidden = false;
+  };
+  
+  render();
 };

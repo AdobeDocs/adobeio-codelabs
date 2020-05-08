@@ -205,7 +205,7 @@ module.exports = async () => {
       <nav class="header-item">
         <ul class="spectrum-Breadcrumbs">
           <li class="spectrum-Breadcrumbs-item">
-            <a class="spectrum-Breadcrumbs-itemLink" target="_parent" href="${path}?src=/README.html">${index.title}</a>
+            <a class="spectrum-Breadcrumbs-itemLink" target="_parent" href="${path}${menu.querySelector('a').getAttribute('href')}">${index.title}</a>
             <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightSmall spectrum-Breadcrumbs-itemSeparator" focusable="false" aria-hidden="true">
               <path d="M5.5 4a.747.747 0 0 0-.22-.53C4.703 2.862 3.242 1.5 2.04.23A.75.75 0 1 0 .98 1.29L3.69 4 .98 6.71a.75.75 0 1 0 1.06 1.06l3.24-3.24A.747.747 0 0 0 5.5 4z"></path>
             </svg>
@@ -293,19 +293,6 @@ module.exports = async () => {
   // Create Navigation
   const src = getSrc();
   
-  // Is README selected
-  if (src === null || src === '/README.html') {
-    const newUrl = `${location.protocol}//${location.host}${location.pathname}?src=/README.html`;
-    history.replaceState({href: newUrl}, '', newUrl);
-    
-    const selected = menu.querySelector('.is-selected');
-    selected && selected.classList.remove('is-selected');
-    
-    const step = menu.getElementsByTagName('li')[0];
-    step.classList.add('is-selected');
-    step.setAttribute('aria-current', 'page');
-  }
-  
   // todo Support multi-level navigation
   let steps = '';
   for (const step of index.navigation) {
@@ -317,10 +304,24 @@ module.exports = async () => {
       </li>
     `;
     
-    // Preload for browser to cache ?
+    // Preload for browser caching
     fetch(`${step.url}.html?ck=${CK}`);
   }
   menu.firstElementChild.insertAdjacentHTML('beforeend', steps);
+  
+  const firstNav = index.navigation[0];
+  // If no step selected then select first one by default
+  if (src === null) {
+    const newUrl = `${location.protocol}//${location.host}${location.pathname}?src=${firstNav.url}.html`;
+    history.replaceState({href: newUrl}, '', newUrl);
+  
+    const selected = menu.querySelector('.is-selected');
+    selected && selected.classList.remove('is-selected');
+    
+    const firstStep = menu.getElementsByTagName('li')[0];
+    firstStep.classList.add('is-selected');
+    firstStep.setAttribute('aria-current', 'page');
+  }
   
   await render();
 };

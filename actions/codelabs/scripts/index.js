@@ -43,9 +43,12 @@ module.exports = async () => {
   };
   
   const render = () => {
+    const selectedStep = menu.querySelector('.is-selected');
+    const url = selectedStep.querySelector('a').href.replace('?src=/', '');
     // When assigning the URL with viewer.src = url, it adds a new entry to the browser's list of visited URLs to go back to
     // Which messes up navigation
-    viewer.contentWindow.location.replace(`${menu.querySelector('.is-selected a').href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}`);
+    
+    viewer.contentWindow.location.replace(`${url}?ck=${selectedStep.dataset.ck}${ENV_PARAM}`);
     
     requestAnimationFrame(() => {
       if (sideNav.classList.contains('is-open')) {
@@ -113,6 +116,9 @@ module.exports = async () => {
         url: `#${title.id}`
       });
     }
+  
+    const page = src.replace('.html', '.md');
+    const selectedStep = menu.querySelector('.is-selected');
     
     main.insertAdjacentHTML('beforeend', `
       <div class="side-panel">
@@ -122,9 +128,9 @@ module.exports = async () => {
         </ul>
         <h3 class="spectrum-Detail spectrum-Detail--M">About this page</h3>
         <ul>
-          <li>${menu.querySelector('.is-selected').dataset.duration || readingTime(main.textContent)} min read</li>
-          <li>Last update: <span id="lastUpdate"></span></li>
-          <li>Author: <a class="spectrum-Link" id="lastAuthor"></a></li>
+          <li>${selectedStep.dataset.duration || readingTime(main.textContent)} min read</li>
+          <li>Last update: ${selectedStep.dataset.lastUpdate}</li>
+          <li>Author: <a class="spectrum-Link" href="mailto:${selectedStep.dataset.authorEmail}">${selectedStep.dataset.authorName}</a></li>
         </ul>
         <h3 class="spectrum-Detail spectrum-Detail--M">Help</h3>
         <ul>
@@ -133,21 +139,6 @@ module.exports = async () => {
         </ul>
       </div>
     `);
-    
-    const page = src.replace('.html', '.md');
-    
-    fetch(`${ABOUT_ACTION}?repository=${index.repository}&page=${page}`)
-      .then((res) => {
-        return res.json()
-      })
-      .then((commits) => {
-        const author = commits[0].commit.author;
-        doc.getElementById('lastUpdate').textContent = new Date(author.date).toLocaleDateString();
-        
-        const lastAuthor = doc.getElementById('lastAuthor');
-        lastAuthor.textContent = document.author && document.author.name || author.name;
-        lastAuthor.href = `mailto:${document.author && document.author.email || author.email}`;
-      });
     
     header.innerHTML = `
       <nav class="header-item">
@@ -159,7 +150,7 @@ module.exports = async () => {
             </svg>
           </li>
           <li class="spectrum-Breadcrumbs-item">
-            <a class="spectrum-Breadcrumbs-itemLink" target="_parent" href="${location}" aria-current="page">${menu.querySelector('.is-selected').textContent.trim()}</a>
+            <a class="spectrum-Breadcrumbs-itemLink" target="_parent" href="${location}" aria-current="page">${selectedStep.textContent.trim()}</a>
           </li>
         </ul>
       </nav>
@@ -208,7 +199,7 @@ module.exports = async () => {
     }
   };
   
-  menu.addEventListener('click', async (event) => {
+  menu.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
       event.preventDefault();
       
@@ -237,9 +228,6 @@ module.exports = async () => {
   // Update title
   document.title = index.title;
   
-  // Store author
-  document.author = index.author;
-  
   // Create Navigation
   const src = getSrc();
   
@@ -247,15 +235,27 @@ module.exports = async () => {
   let steps = '';
   for (const step of index.navigation) {
     const isStepSelected = src === `${step.url}.html`;
+  
+    const {sha, author} = await (async () => {
+      const page = `${step.url}.md`;
+      const res = await fetch(`${ABOUT_ACTION}?repository=${index.repository}&page=${page}`);
+      const commits = await res.json();
+      return {
+        sha: commits[0].sha,
+        author: commits[0].commit.author
+      }
+    })();
+    
+    const ck = sha || CK;
     
     steps += `
-      <li data-duration="${step.duration || ''}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
+      <li data-author-email="${index.author && index.author.email || author.email}" data-author-name="${index.author && index.author.name || author.name}" data-ck="${ck}" data-last-update="${new Date(author.date).toLocaleDateString()}" data-duration="${step.duration || ''}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
         <a class="spectrum-SideNav-itemLink" href="?src=${step.url}.html">${step.title}</a>
       </li>
     `;
     
     // Preload for browser caching
-    fetch(`${step.url}.html?ck=${CK}`);
+    fetch(`${step.url}.html?ck=${ck}`);
   }
   menu.firstElementChild.insertAdjacentHTML('beforeend', steps);
   
@@ -281,7 +281,7 @@ module.exports = async () => {
   viewer.onload = () => {
     const src = viewer.contentWindow.location.href;
     
-    const step = Array.from(menu.getElementsByTagName('a')).find(item => `${item.href.replace('?src=/', '')}?ck=${CK}${ENV_PARAM}` === src);
+    const step = Array.from(menu.getElementsByTagName('a')).find(item => src.startsWith(item.href.replace('?src=/', '')));
     if (!step.parentElement.classList.contains('is-selected')) {
       step.parentElement.classList.add('is-selected');
     }

@@ -98,9 +98,8 @@ module.exports = async () => {
     spectrumify('h4', 'spectrum-Heading spectrum-Heading--M');
     spectrumify('h5', 'spectrum-Heading spectrum-Heading--S');
     spectrumify('h6', 'spectrum-Heading spectrum-Heading--XS');
-    spectrumify('code', `spectrum-Code spectrum-Code--S`);
+    spectrumify('code', `spectrum-Code spectrum-Code--S spectrum-Well`);
     spectrumify('p, ol, ul', `spectrum-Body spectrum-Body--M`);
-    spectrumify('p > code', 'spectrum-Well');
     spectrumify('table', 'spectrum-Table');
     spectrumify('thead', 'spectrum-Table-head');
     spectrumify('tbody', 'spectrum-Table-body');

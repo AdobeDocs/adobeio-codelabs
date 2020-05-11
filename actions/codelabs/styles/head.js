@@ -15,21 +15,25 @@ module.exports = `html, body {
   margin-top: 16px;
 }
 
-pre > code.spectrum-Code--S {
+code.spectrum-Code--S {
   border-radius: 4px;
   background-color: rgba(80, 80, 80, 0.02);
   border: 1px solid rgba(50, 50, 50, 0.05);
-  padding: 16px;
 }
 
-.spectrum--darkest pre > code.spectrum-Code--S {
+.spectrum--darkest code.spectrum-Code--S {
   background-color: rgba(200, 200, 200, 0.02);
   border-color: rgba(239, 239, 239, 0.05);
 }
 
 code.spectrum-Code--S.spectrum-Well {
-  padding: 4px;
   display: inline;
+  padding: 4px;
+}
+
+code.spectrum-Code--S.spectrum-Well.hljs {
+  display: block;
+  padding: 16px;
 }
 
 .spectrum-Table {
@@ -37,7 +41,7 @@ code.spectrum-Code--S.spectrum-Well {
 }
 
 main {
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 128px);
 }
 
 main img {

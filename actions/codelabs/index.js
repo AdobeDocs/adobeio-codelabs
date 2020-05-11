@@ -1,8 +1,8 @@
 const {Core} = require('@adobe/aio-sdk');
 
 const files = {
-  'highlight.js': require('./scripts/highlight.min.js'),
-  'typekit.js': require('./scripts/typekit.min.js'),
+  'highlight.js': require('./scripts/highlight.js'),
+  'typekit.js': require('./scripts/typekit.js'),
   'template.js': require('./templates/index.js'),
   'head.js': require('./templates/head.js'),
   'index.js': require('./scripts/index.js'),

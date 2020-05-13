@@ -9,21 +9,24 @@ async function main(params) {
     const page = params.page;
     
     // todo verify v4 API with GraphQL
-    const about = await fetch(`https://api.github.com/repos/${repo[repo.length - 2]}/${repo[repo.length - 1]}/commits?path=${page}&page=1&per_page=1`, {
+    const res = await fetch(`https://api.github.com/repos/${repo[repo.length - 2]}/${repo[repo.length - 1]}/commits?path=${page}&page=1&per_page=1`, {
       headers: {
         'user-agent': 'node.js',
         'Authorization': `token ${params.github_token}`
       }
     });
     
-    const body = await about.json();
+    const commits = await res.json();
     
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json'
       },
-      body
+      body: {
+        sha: commits[0].sha,
+        author: commits[0].commit.author
+      }
     };
   }
   catch (e) {

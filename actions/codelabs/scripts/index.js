@@ -2,7 +2,6 @@ module.exports = async () => {
   const ENV = new URLSearchParams(location.search).get('env') === 'stage' ? 'demo' : 'prod';
   const ENV_PARAM = ENV === 'demo' ? '&env=stage' : '';
   const ABOUT_ACTION = `https://adobeioruntime.net/api/v1/web/aioe-${ENV}/aio-codelabs-0.0.1/about`;
-  const CK = new Date().getTime();
   
   let isLarge = window.innerWidth < 768;
   const toggleLarge = () => {
@@ -34,8 +33,22 @@ module.exports = async () => {
   navToggleOverlay.addEventListener('click', toggleSideNav);
   
   const getIndex = async () => {
-    const manifest = await fetch(`/manifest.json?ck=${CK}`);
-    return await manifest.json();
+    loadingText.textContent = 'Requesting index';
+    
+    let repository = localStorage.getItem('repository');
+    let ck = new Date().getTime();
+    
+    if (repository) {
+      const res = await fetch(`${ABOUT_ACTION}?repository=${repository}&page=manifest.json`);
+      const {sha} = await res.json();
+      ck = sha;
+    }
+    
+    const manifest = await fetch(`/manifest.json?ck=${ck}`);
+    const index = await manifest.json();
+    localStorage.setItem('repository', index.repository);
+  
+    return index;
   };
   
   const getSrc = () => {
@@ -44,6 +57,14 @@ module.exports = async () => {
   
   const render = () => {
     const selectedStep = menu.querySelector('.is-selected');
+    if (!selectedStep.dataset.loaded) {
+      loadingText.textContent = `Pulling ${selectedStep.textContent.trim()}`;
+      selectedStep.dataset.loaded = true;
+    }
+    else {
+      loadingText.textContent = '';
+    }
+    
     const url = selectedStep.querySelector('a').href.replace('?src=/', '');
     // When assigning the URL with viewer.src = url, it adds a new entry to the browser's list of visited URLs to go back to
     // Which messes up navigation
@@ -204,6 +225,7 @@ module.exports = async () => {
       
       viewer.hidden = true;
       loading.hidden = false;
+      loadingText.hidden = false;
       
       // Update selection
       const selected = menu.querySelector('.is-selected');
@@ -230,31 +252,22 @@ module.exports = async () => {
   // Create Navigation
   const src = getSrc();
   
+  loadingText.textContent = 'Importing latest state';
+  
   // todo Support multi-level navigation
   let steps = '';
   for (const step of index.navigation) {
     const isStepSelected = src === `${step.url}.html`;
-  
-    const {sha, author} = await (async () => {
-      const page = `${step.url}.md`;
-      const res = await fetch(`${ABOUT_ACTION}?repository=${index.repository}&page=${page}`);
-      const commits = await res.json();
-      return {
-        sha: commits[0].sha,
-        author: commits[0].commit.author
-      }
-    })();
     
-    const ck = sha || CK;
+    const page = `${step.url}.md`;
+    const res = await fetch(`${ABOUT_ACTION}?repository=${index.repository}&page=${page}`);
+    const {sha, author} = await res.json();
     
     steps += `
-      <li data-author-email="${index.author && index.author.email || author.email}" data-author-name="${index.author && index.author.name || author.name}" data-ck="${ck}" data-last-update="${new Date(author.date).toLocaleDateString()}" data-duration="${step.duration || ''}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
+      <li data-url="${step.url}" data-author-email="${index.author && index.author.email || author.email}" data-author-name="${index.author && index.author.name || author.name}" data-ck="${sha}" data-last-update="${new Date(author.date).toLocaleDateString()}" data-duration="${step.duration || ''}" class="spectrum-SideNav-item ${isStepSelected ? 'is-selected' : ''}" ${isStepSelected ? 'aria-current="page"' : ''}>
         <a class="spectrum-SideNav-itemLink" href="?src=${step.url}.html">${step.title}</a>
       </li>
     `;
-    
-    // Preload for browser caching
-    fetch(`${step.url}.html?ck=${ck}`);
   }
   menu.firstElementChild.insertAdjacentHTML('beforeend', steps);
   
@@ -274,6 +287,7 @@ module.exports = async () => {
   
   viewer.beforeunload = () => {
     loading.hidden = false;
+    loadingText.hidden = false;
     viewer.hidden = true;
   };
   
@@ -317,8 +331,19 @@ module.exports = async () => {
     transformLab(viewer.contentDocument);
   
     loading.hidden = true;
+    loadingText.hidden = true;
     viewer.hidden = false;
+    
+    if (viewer.preload) {
+      viewer.preload = false;
+      // Preload for browser caching
+      for (const step of menu.getElementsByTagName('li')) {
+        fetch(`${step.dataset.url}.html?ck=${step.dataset.ck}`);
+      }
+    }
   };
+  
+  viewer.preload = true;
   
   render();
 };

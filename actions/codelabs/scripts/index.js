@@ -154,7 +154,7 @@ module.exports = async () => {
         </ul>
         <h3 class="spectrum-Detail spectrum-Detail--M">Help</h3>
         <ul>
-          <li><a href="mailto:adobeio@adobe.com" class="spectrum-Link" target="_blank">Contact us</a></li>
+          <li><a href="mailto:iodev@adobe.com" class="spectrum-Link" target="_blank">Contact us</a></li>
           <li><a href="https://docs.adobe.com/content/help/en/contributor/contributor-guide/introduction.html" class="spectrum-Link" target="_blank">Learn more</a></li>
         </ul>
       </div>

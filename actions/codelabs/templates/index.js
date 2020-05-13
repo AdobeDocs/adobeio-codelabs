@@ -74,6 +74,7 @@ module.exports = () => {
     </div>
     <main id="main">
       <iframe id="viewer" hidden title="Viewer"></iframe>
+      <span id="loadingText" class="spectrum-Heading spectrum-Heading--XS"></span>
       <div id="loading" class="spectrum-CircleLoader spectrum-CircleLoader--indeterminate spectrum-CircleLoader--large">
         <div class="spectrum-CircleLoader-track"></div>
         <div class="spectrum-CircleLoader-fills">

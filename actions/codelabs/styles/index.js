@@ -46,8 +46,16 @@ module.exports = `html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -40px;
-  margin-top: -40px;
+  transform: translate(-50%,-50%);
+}
+
+#loadingText {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  margin-top: 56px;
+  width: 100%;
+  text-align: center;
 }
 
 .logo {

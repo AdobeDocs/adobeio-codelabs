@@ -17,6 +17,15 @@ async function main(params) {
     });
     
     const commits = await res.json();
+    const date = new Date();
+  
+    let sha = date.getTime();
+    let author = {name: 'AIOE', email: 'iodev@adobe.com', date};
+    
+    if (commits[0]) {
+      sha = commits[0].sha;
+      author = commits[0].commit.author;
+    }
     
     return {
       statusCode: 200,
@@ -24,8 +33,8 @@ async function main(params) {
         'Content-Type': 'application/json'
       },
       body: {
-        sha: commits[0].sha,
-        author: commits[0].commit.author
+        sha,
+        author
       }
     };
   }

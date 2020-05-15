@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-debugging",
+    "url": "https://adobeio-codelabs-debugging--adobedocs.project-helix.page",
+    "thumbnail": "https://t3.ftcdn.net/jpg/01/76/76/48/240_F_176764899_ysJWinFo3ON0M749i8h0nWyEpUmwrD1g.jpg",
+    "published": "May 15, 2020",
+    "duration": 27,
+    "title": "Debugging Firefly Apps",
+    "description": "This codelab will guide you through the basic steps of debugging a Firefly App.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-campaign-standard",
     "url": "https://adobeio-codelabs-campaign-standard-adobedocs.project-helix.page",
     "thumbnail": "https://t3.ftcdn.net/jpg/00/67/04/04/240_F_67040429_C2oepRd3xS85Yl2YzHtlSAad656CQecS.jpg",

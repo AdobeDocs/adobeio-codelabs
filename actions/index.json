@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-ci-cd",
+    "url": "https://adobeio-codelabs-ci-cd-adobedocs.project-helix.page",
+    "thumbnail": "https://t4.ftcdn.net/jpg/02/11/95/03/240_F_211950370_LEnNyuHWQnThB793NfmcXOhZLMVvfJEr.jpg",
+    "published": "May 18, 2020",
+    "duration": 15,
+    "title": "CI/CD in Firefly Apps",
+    "description": "This codelab will guide you through setting up CI/CD for a Firefly App using GitHub Actions.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-debugging",
     "url": "https://adobeio-codelabs-debugging--adobedocs.project-helix.page",
     "thumbnail": "https://t3.ftcdn.net/jpg/01/76/76/48/240_F_176764899_ysJWinFo3ON0M749i8h0nWyEpUmwrD1g.jpg",
@@ -34,7 +44,7 @@
     "url": "https://adobeio-codelabs-spectrum-intro-adobedocs.project-helix.page",
     "thumbnail": "https://spectrum.adobe.com/static/images/spectrum_illustration_desktop@2x.png",
     "published": "April 17, 2020",
-    "duration": 15,
+    "duration": 18,
     "title": "Spectrum Introduction",
     "description": "This codelab is an introduction to Spectrum to build a Firefly App UI.",
     "type": "firefly"

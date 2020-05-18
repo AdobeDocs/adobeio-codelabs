@@ -30,7 +30,9 @@ async function main(params) {
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        // 48h
+        'Cache-Control': 'max-age=172800'
       },
       body: {
         sha,

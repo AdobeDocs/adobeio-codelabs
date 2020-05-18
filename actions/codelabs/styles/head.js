@@ -42,6 +42,7 @@ code.spectrum-Code--S.spectrum-Well.hljs {
 
 main {
   min-height: calc(100vh - 128px);
+  padding-top: 64px;
 }
 
 main img {
@@ -49,9 +50,12 @@ main img {
 }
 
 header {
+  position: fixed;
   padding: 16px 0;
+  width: 100%;
   display: flex;
   overflow-y: auto;
+  background-color: var(--spectrum-alias-background-color-default, var(--spectrum-global-color-gray-100));
 }
 
 header > .header-item {
@@ -67,12 +71,13 @@ header > nav {
 }
 
 .side-panel {
-  position: absolute;
+  position: fixed;
   top: 64px;
   right: 0;
   padding: 16px;
   box-sizing: border-box;
   width: 256px;
+  background-color: var(--spectrum-alias-background-color-default, var(--spectrum-global-color-gray-100));
 }
 
 .side-panel h3 {
@@ -133,9 +138,17 @@ header > nav {
   .side-panel {
     display: none;
   }
-
+  
+  header {
+    position: static;
+  }
+  
   .header-item .spectrum-Breadcrumbs {
     display: block;
+  }
+  
+  main {
+    padding-top: 0;
   }
 }
 

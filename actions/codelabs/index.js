@@ -26,7 +26,9 @@ function main(params) {
       return {
         statusCode: 200,
         headers: {
-          'Content-Type': 'application/javascript'
+          'Content-Type': 'application/javascript',
+          // 48h
+          'Cache-Control': 'max-age=172800'
         },
         body: '(' + file.toString() + ')()'
       };
@@ -35,7 +37,9 @@ function main(params) {
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'text/css'
+        'Content-Type': 'text/css',
+        // 48h
+        'Cache-Control': 'max-age=172800'
       },
       body: file
     };

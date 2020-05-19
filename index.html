@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/popover@2.0.6/dist/index-vars.css">
   <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/circleloader@2.0.5/dist/index-vars.css">
   <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/toggle@2.1.0/dist/index-vars.css">
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/breadcrumb@2.0.5/dist/index-vars.css">
   <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/link@2.0.6/dist/index-vars.css">
   <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/rule@2.0.6/dist/index-vars.css">
   <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/well@2.0.0/dist/index-vars.css">
@@ -100,11 +101,18 @@
   </div>
 
   <main id="main" class="spectrum spectrum-Typography">
-    <header class="header">
-      <div class="spectrum-ToggleSwitch">
-        <input type="checkbox" class="spectrum-ToggleSwitch-input" id="darkSwitch">
-        <span class="spectrum-ToggleSwitch-switch"></span>
-        <label class="spectrum-ToggleSwitch-label" for="darkSwitch">Dark mode</label>
+    <header id="header">
+      <div class="header-item">
+        <nav>
+          <ul class="spectrum-Breadcrumbs" id="breadcrumbs" hidden></ul>
+        </nav>
+      </div>
+      <div class="header-item">
+        <div class="spectrum-ToggleSwitch">
+          <input type="checkbox" class="spectrum-ToggleSwitch-input" id="darkSwitch">
+          <span class="spectrum-ToggleSwitch-switch"></span>
+          <label class="spectrum-ToggleSwitch-label" for="darkSwitch">Dark mode</label>
+        </div>
       </div>
     </header>
 
@@ -146,7 +154,7 @@
         <div id="searchPanel">
           <div class="spectrum-Tabs spectrum-Tabs--horizontal">
             <div class="spectrum-Tabs-item is-selected" tabindex="0" data-type="firefly">
-              <label class="spectrum-Tabs-itemLabel">Firefly CodeLabs</label>
+              <label class="spectrum-Tabs-itemLabel">CodeLabs</label>
             </div>
             <div id="searchTabsIndicator" hidden class="spectrum-Tabs-selectionIndicator"></div>
           </div>

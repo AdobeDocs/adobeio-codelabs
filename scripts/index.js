@@ -98,6 +98,9 @@ navToggleOverlay.addEventListener('click', toggleSideNav);
       if (!storage.index) {
         return;
       }
+  
+      breadcrumbs.hidden = true;
+      header.classList.remove('is-sticky');
       
       let selectedMenu = menu.querySelector('.is-selected');
       selectedMenu && selectedMenu.classList.remove('is-selected');
@@ -230,6 +233,23 @@ navToggleOverlay.addEventListener('click', toggleSideNav);
     searchPanel.classList.add('is-selected');
     
     closeSideNav();
+  
+    breadcrumbs.innerHTML = `
+        <li class="spectrum-Breadcrumbs-item">
+          <div class="spectrum-Breadcrumbs-itemLink" role="link" tabindex="0" onclick="menu.querySelector('a').click()">Firefly CodeLabs</div>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightSmall spectrum-Breadcrumbs-itemSeparator" focusable="false" aria-hidden="true">
+            <path d="M5.5 4a.747.747 0 0 0-.22-.53C4.703 2.862 3.242 1.5 2.04.23A.75.75 0 1 0 .98 1.29L3.69 4 .98 6.71a.75.75 0 1 0 1.06 1.06l3.24-3.24A.747.747 0 0 0 5.5 4z"></path>
+          </svg>
+        </li>
+        <li class="spectrum-Breadcrumbs-item">
+          <div class="spectrum-Breadcrumbs-itemLink" role="link" tabindex="0" onclick="search.dispatchEvent(new Event('submit'))">Searching "${searchInput.value}"</div>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightSmall spectrum-Breadcrumbs-itemSeparator" focusable="false" aria-hidden="true">
+            <path d="M5.5 4a.747.747 0 0 0-.22-.53C4.703 2.862 3.242 1.5 2.04.23A.75.75 0 1 0 .98 1.29L3.69 4 .98 6.71a.75.75 0 1 0 1.06 1.06l3.24-3.24A.747.747 0 0 0 5.5 4z"></path>
+          </svg>
+        </li>
+      `;
+    breadcrumbs.hidden = false;
+    header.classList.add('is-sticky');
     
     const index = JSON.parse(storage.index) || {};
     selectedPanel = searchPanel.querySelector('.is-selected');
@@ -275,20 +295,24 @@ navToggleOverlay.addEventListener('click', toggleSideNav);
         }
         
         details += `
-          <div class="spectrum-Body spectrum-Body--M search-result">
-            <div><a target="_blank" href="${resItem.url}" class="spectrum-Link spectrum-Link--quiet spectrum-Heading spectrum-Heading--M">${resItem.title}</a></div>
-            ${resItem.description ? `<div class="spectrum-Body spectrum-Body--S search-result-description">${resItem.description}</div>` : ''}
-            ${resItem.files.map(file => `<div><a target="_blank" class="spectrum-Link" href="${file.url}">${file.title}</a></div>`).join('')}
+          <div class="search-result">
+            <div><a target="_blank" href="${item.url || resItem.url}" class="spectrum-Link spectrum-Link--quiet spectrum-Heading spectrum-Heading--XS">${item.title || resItem.title}</a></div>
+            ${resItem.description ? `<div class="spectrum-Body spectrum-Body--S search-result-description">${item.description || resItem.description}</div>` : ''}
+            ${resItem.files.map(file => `<div><a target="_blank" class="spectrum-Link" href="${item.url ? item.url + '?src=/' + file.title.replace('.md', '.html') : file.url}">${file.title}</a></div>`).join('')}
           </div>
         `;
       }
       
       searchResults.innerHTML = `
-        <p class="spectrum-Body spectrum-Body--M search-result-count">
-          ${res.count} search results for <strong>${searchInput.value}</strong> in ${selectedPanel.textContent.trim()}
-        </p>
         <div role="grid" class="grid">${grid}</div>
-        <div class="search-details">${details}
+        <hr class="spectrum-Rule spectrum-Rule--medium">
+        <div class="search-details">
+          <h3 class="spectrum-Heading spectrum-Heading--M">Advanced Search Results</h3>
+          <p class="spectrum-Body spectrum-Body--M">
+            ${res.count} search results for <strong>${searchInput.value}</strong> in ${selectedPanel.textContent.trim()}
+          </p>
+          ${details}
+        </div>
       `;
     }
     

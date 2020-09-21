@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/Cognifide/adobeio-asset-compute-labs",
+    "url": "https://adobeio-asset-compute-labs-cognifide.project-helix.page",
+    "thumbnail": "https://raw.githubusercontent.com/Cognifide/adobeio-asset-compute-labs/master/lessons/assets/featured-image.jpg",
+    "published": "September 18, 2020",
+    "duration": 18,
+    "title": "Custom Asset Compute Worker",
+    "description": "This codelab is a tutorial about how to build custom Asset Compute Worker leveraging 3rd party service, which can be used by Adobe Experience Manager to generate intelligent renditions.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-ci-cd",
     "url": "https://adobeio-codelabs-ci-cd-adobedocs.project-helix.page",
     "thumbnail": "https://t4.ftcdn.net/jpg/02/11/95/03/240_F_211950370_LEnNyuHWQnThB793NfmcXOhZLMVvfJEr.jpg",

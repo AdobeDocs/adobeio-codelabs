@@ -58,15 +58,5 @@
     "title": "Spectrum Introduction",
     "description": "This codelab is an introduction to Spectrum to build a Firefly App UI.",
     "type": "firefly"
-  },
-  {
-    "repo": "https://github.com/Cognifide/adobeio-asset-compute-labs",
-    "url": "https://adobeio-asset-compute-labs-cognifide.project-helix.page",
-    "thumbnail": "https://raw.githubusercontent.com/Cognifide/adobeio-asset-compute-labs/master/lessons/assets/featured-image.jpg",
-    "published": "September 18, 2020",
-    "duration": 18,
-    "title": "Custom Asset Compute Worker",
-    "description": "This codelab is a tutorial about how to build custom Asset Compute Worker leveraging 3rd party service, which can be used by Adobe Experience Manager to generate intelligent renditions.",
-    "type": "firefly"
   }
 ]

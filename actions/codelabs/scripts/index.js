@@ -86,6 +86,8 @@ module.exports = async () => {
     const footer = doc.body.querySelector('footer');
     const main = doc.body.querySelector('main');
     
+    main.firstElementChild.classList.add('main-content');
+    
     const spectrumify = (selectors, className) => {
       selectors.split(',').forEach((name) => {
         for (const el of main.querySelectorAll(name)) {

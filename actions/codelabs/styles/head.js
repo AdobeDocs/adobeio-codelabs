@@ -3,7 +3,7 @@ module.exports = `html, body {
   padding: 0;
 }
 
-.default {
+.main-content {
   padding: 24px 256px 0 52px;
   max-width: 1080px;
   min-width: 304px;

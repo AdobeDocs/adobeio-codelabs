@@ -130,7 +130,7 @@ header > nav {
 }
 
 @media screen and (max-width: 960px) {
-  .default {
+  .main-content {
     padding-right: 24px;
     padding-left: 24px;
   }

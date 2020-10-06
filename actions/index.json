@@ -16,7 +16,7 @@
     "published": "September 18, 2020",
     "duration": 18,
     "title": "Custom Asset Compute Worker",
-    "description": "This codelab is a tutorial about how to build custom Asset Compute Worker leveraging 3rd-party services to generate intelligent renditions in Adobe Experience Manager.",
+    "description": "This codelab will guide you through building a Custom Asset Compute Worker leveraging 3rd-party services to generate intelligent renditions in AEM.",
     "type": "firefly"
   },
   {

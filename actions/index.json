@@ -1,12 +1,22 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-alarms",
+    "url": "https://adobeio-codelabs-alarms-adobedocs.project-helix.page",
+    "thumbnail": "https://github.com/AdobeDocs/adobeio-codelabs-alarms/blob/master/lessons/assets/thumbnail.jpg?raw=true",
+    "published": "October 6, 2020",
+    "duration": 20,
+    "title": "Scheduling Cron Jobs",
+    "description": "This codelab will guide you through creating cron jobs in a Firefly app using OpenWhisk Alarms Package.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/Cognifide/adobeio-asset-compute-labs",
     "url": "https://adobeio-asset-compute-labs-cognifide.project-helix.page",
     "thumbnail": "https://raw.githubusercontent.com/Cognifide/adobeio-asset-compute-labs/master/lessons/assets/featured-image.jpg",
     "published": "September 18, 2020",
     "duration": 18,
     "title": "Custom Asset Compute Worker",
-    "description": "This codelab is a tutorial about how to build custom Asset Compute Worker leveraging 3rd party service, which can be used by Adobe Experience Manager to generate intelligent renditions.",
+    "description": "This codelab is a tutorial about how to build custom Asset Compute Worker leveraging 3rd-party services to generate intelligent renditions in Adobe Experience Manager.",
     "type": "firefly"
   },
   {

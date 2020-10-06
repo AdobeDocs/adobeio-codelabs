@@ -6,7 +6,7 @@
     "published": "October 6, 2020",
     "duration": 20,
     "title": "Scheduling Cron Jobs",
-    "description": "This codelab will guide you through creating cron jobs in a Firefly app using OpenWhisk Alarms Package.",
+    "description": "This codelab guides you through creating cron jobs in a Firefly app using OpenWhisk Alarms Package.",
     "type": "firefly"
   },
   {
@@ -16,7 +16,7 @@
     "published": "September 18, 2020",
     "duration": 18,
     "title": "Custom Asset Compute Worker",
-    "description": "This codelab will guide you through building a Custom Asset Compute Worker leveraging 3rd-party services to generate intelligent renditions in AEM.",
+    "description": "This codelab guides you through building a Custom Asset Compute Worker leveraging 3rd-party services to generate intelligent renditions in AEM.",
     "type": "firefly"
   },
   {
@@ -26,7 +26,7 @@
     "published": "May 18, 2020",
     "duration": 15,
     "title": "CI/CD in Firefly Apps",
-    "description": "This codelab will guide you through setting up CI/CD for a Firefly App using GitHub Actions.",
+    "description": "This codelab guides you through setting up CI/CD for a Firefly App using GitHub Actions.",
     "type": "firefly"
   },
   {
@@ -36,7 +36,7 @@
     "published": "May 15, 2020",
     "duration": 27,
     "title": "Debugging Firefly Apps",
-    "description": "This codelab will guide you through the basic steps of debugging a Firefly App.",
+    "description": "This codelab guides you through the basic steps of debugging a Firefly App.",
     "type": "firefly"
   },
   {
@@ -46,7 +46,7 @@
     "published": "May 7, 2020",
     "duration": 58,
     "title": "Customer Profiles Dashboard",
-    "description": "This codelab will guide you through creating a dashboard of customer profiles from Adobe Campaign Standard using Project Firefly.",
+    "description": "This codelab guides you through creating a dashboard of customer profiles from Adobe Campaign Standard using Project Firefly.",
     "type": "firefly"
   },
   {
@@ -56,7 +56,7 @@
     "published": "May 4, 2020",
     "duration": 28,
     "title": "Firefly Headless App",
-    "description": "This codelab will guide you through creating a Headless App using Project Firefly to render a barcode with dynamic data.",
+    "description": "This codelab guides you through creating a Headless App using Project Firefly to render a barcode with dynamic data.",
     "type": "firefly"
   },
   {

@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events",
+    "url": "https://adobeio-codelabs-custom-events-adobedocs.project-helix.page",
+    "thumbnail": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events/blob/master/lessons/assets/event.png",
+    "published": "Nov 17, 2020",
+    "duration": 26,
+    "title": "Build Event-Driven Firefly App Using Custom I/O Events",
+    "description": "This codelab is an introduction to applying Custom I/O Events in event-driven use cases of Firefly applications.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-alarms",
     "url": "https://adobeio-codelabs-alarms-adobedocs.project-helix.page",
     "thumbnail": "https://github.com/AdobeDocs/adobeio-codelabs-alarms/blob/master/lessons/assets/thumbnail.jpg?raw=true",
@@ -67,16 +77,6 @@
     "duration": 18,
     "title": "Spectrum Introduction",
     "description": "This codelab is an introduction to Spectrum to build a Firefly App UI.",
-    "type": "firefly"
-  },
-  {
-    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events",
-    "url": "https://adobeio-codelabs-custom-events-adobedocs.project-helix.page",
-    "thumbnail": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events/blob/master/lessons/assets/event.png",
-    "published": "Nov 17, 2020",
-    "duration": 26,
-    "title": "Build Event-Driven Firefly App Using Custom Events",
-    "description": "This codelab is an introduction to using custom events",
     "type": "firefly"
   }
 ]

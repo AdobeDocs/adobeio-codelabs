@@ -2,7 +2,7 @@
   {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events",
     "url": "https://adobeio-codelabs-custom-events-adobedocs.project-helix.page",
-    "thumbnail": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events/blob/master/lessons/assets/eventthumbnail.jpeg",
+    "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-custom-events/master/lessons/assets/eventthumbnail.png",
     "published": "Nov 17, 2020",
     "duration": 26,
     "title": "Event-Driven Firefly Apps",
@@ -12,7 +12,7 @@
   {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-alarms",
     "url": "https://adobeio-codelabs-alarms-adobedocs.project-helix.page",
-    "thumbnail": "https://github.com/AdobeDocs/adobeio-codelabs-alarms/blob/master/lessons/assets/thumbnail.jpg?raw=true",
+    "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-alarms/master/lessons/assets/thumbnail.jpg",
     "published": "October 6, 2020",
     "duration": 20,
     "title": "Scheduling Cron Jobs",

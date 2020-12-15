@@ -20,9 +20,9 @@
     "type": "firefly"
   },
   {
-    "repo": "https://github.com/Cognifide/adobeio-asset-compute-labs",
-    "url": "https://adobeio-asset-compute-labs-cognifide.project-helix.page",
-    "thumbnail": "https://raw.githubusercontent.com/Cognifide/adobeio-asset-compute-labs/master/lessons/assets/featured-image.jpg",
+    "repo": "https://github.com/wttech/adobeio-asset-compute-labs",
+    "url": "https://adobeio-asset-compute-labs-wttech.project-helix.page",
+    "thumbnail": "https://raw.githubusercontent.com/wttech/adobeio-asset-compute-labs/master/lessons/assets/featured-image.jpg",
     "published": "September 18, 2020",
     "duration": 18,
     "title": "Custom Asset Compute Worker",

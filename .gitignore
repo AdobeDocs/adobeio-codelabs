@@ -1,4 +1,5 @@
 /.env
 /node_modules
-/actions/search/secret.json
 /dist
+.hlx
+logs

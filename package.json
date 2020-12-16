@@ -2,7 +2,7 @@
   "name": "aio-codelabs",
   "version": "0.0.1",
   "dependencies": {
-    "@adobe/aio-sdk": "^1.1.0",
-    "node-fetch": "^2.6.0"
+    "@adobe/aio-sdk": "^2.3.1",
+    "node-fetch": "^2.6.1"
   }
 }

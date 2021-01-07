@@ -5,7 +5,7 @@
     "thumbnail": "https://react-spectrum.adobe.com/ReactSpectrumHome_976x445_2x.d66cabe5.png",
     "published": "Jan 7, 2021",
     "duration": 30,
-    "title": "Building a Firefly Todo App with aio-lib-state and React Spectrum",
+    "title": "Building a Firefly Todo App",
     "description": "This codelab will show you how to build a Todo App with Project Firefly using aio-lib-state as storage library and React Spectrum components.",
     "type": "firefly"
   },

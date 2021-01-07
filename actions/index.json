@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-react-spectrum-crud",
+    "url": "https://adobeio-codelabs-react-spectrum-crud-adobedocs.hlx.page",
+    "thumbnail": "https://react-spectrum.adobe.com/ReactSpectrumHome_976x445_2x.d66cabe5.png",
+    "published": "Jan 7, 2021",
+    "duration": 30,
+    "title": "Building a Firefly Todo App with aio-lib-state and React Spectrum",
+    "description": "This codelab will show you how to build a Todo App with Project Firefly using aio-lib-state as storage library and React Spectrum components.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-custom-events",
     "url": "https://adobeio-codelabs-custom-events-adobedocs.project-helix.page",
     "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-custom-events/master/lessons/assets/eventthumbnail.png",

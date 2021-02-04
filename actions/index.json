@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-journaling-events",
+    "url": "https://adobeio-codelabs-journaling-events-adobedocs.hlx.page",
+    "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-journaling-events/master/lessons/assets/eventthumbnail.png",
+    "published": "Feb 7, 2021",
+    "duration": 30,
+    "title": "Consume Events Using Journaling API",
+    "description": "This codelab will guide you through creating cron jobs in a Firefly application to consume events using Journaling API.",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-react-spectrum-crud",
     "url": "https://adobeio-codelabs-react-spectrum-crud-adobedocs.hlx.page",
     "thumbnail": "https://react-spectrum.adobe.com/ReactSpectrumHome_976x445_2x.d66cabe5.png",

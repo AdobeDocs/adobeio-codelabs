@@ -6,7 +6,7 @@
     "published": "Feb 7, 2021",
     "duration": 30,
     "title": "Consume Events Using Journaling API",
-    "description": "This codelab will guide you through creating cron jobs in a Firefly application to consume events using jouranling API.",
+    "description": "This codelab will guide you through creating cron jobs in a Firefly application to consume events using Journaling API.",
     "type": "firefly"
   },
   {

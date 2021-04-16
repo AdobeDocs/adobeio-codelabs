@@ -5,7 +5,7 @@
     "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-assets-compute-photoshop/master/lessons/assets/thumbnail.png",
     "published": "April 16, 2021",
     "duration": 40,
-    "title": "Assets Compute Worker with Photoshop APIs",
+    "title": "Asset Compute with Photoshop APIs",
     "description": "This codelab guides you through building asset compute workers leveraging Photoshop APIs to generate custom renditions in AEM.",
     "type": "firefly"
   },

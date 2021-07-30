@@ -1,5 +1,15 @@
 [
   {
+    "repo": "https://github.com/AdobeDocs/adobeio-codelabs-event-runtime-action-webhook",
+    "url": "https://adobeio-codelabs-event-runtime-action-webhook-adobedocs.hlx.page",
+    "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-event-runtime-action-webhook/master/lessons/assets/thumbnail.png",
+    "published": "July 29, 2021",
+    "duration": 30,
+    "title": "Events Using Runtime Actions as Webhook",
+    "description": "The codelab will guide you through how to consume events using runtime action as webhook",
+    "type": "firefly"
+  },
+  {
     "repo": "https://github.com/AdobeDocs/adobeio-codelabs-assets-compute-photoshop",
     "url": "https://adobeio-codelabs-assets-compute-photoshop-adobedocs.hlx.page",
     "thumbnail": "https://raw.githubusercontent.com/AdobeDocs/adobeio-codelabs-assets-compute-photoshop/master/lessons/assets/thumbnail.png",
